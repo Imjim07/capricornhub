@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const { name, email, message } = body;
 
   try {
-    console.log("API key:", process.env.RESEND_API_KEY ? "found" : "missing");
+    
     await resend.emails.send({
       from: "Capricorn Hub <onboarding@resend.dev>",
       to: "imonitiejoshua61@gmail.com",
