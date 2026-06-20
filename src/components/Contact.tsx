@@ -8,11 +8,23 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
 
-  function handleSubmit() {
-    if (name && email && message) {
-      setSent(true);
+async function handleSubmit() {
+  if (name && email && message) {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
+}
 
   return (
     <section id="contact" style={{
@@ -158,7 +170,7 @@ export default function Contact() {
           </div>
 
           <button
-            onClick={handleSubmit}
+            onClick={() => handleSubmit()}
             style={{
               padding: "0.85rem 2rem",
               fontSize: "0.9rem",
