@@ -47,7 +47,7 @@ export default function Products() {
         Ready when you are.
       </h2>
 
-      <div style={{
+      <div className="grid-3"style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "1.5rem",

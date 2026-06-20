@@ -78,7 +78,7 @@ export default function Work() {
         </div>
       </div>
 
-      <div style={{
+      <div className="grid-3"style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "1.5rem",

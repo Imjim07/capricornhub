@@ -34,7 +34,7 @@ export default function Services() {
         What We Do
       </p>
 
-      <div style={{
+      <div className="grid-3" style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "3rem",

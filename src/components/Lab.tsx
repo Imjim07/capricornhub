@@ -37,7 +37,7 @@ export default function Lab() {
         Beyond client work, we explore hardware and embedded systems. Arduino and Raspberry Pi projects coming soon.
       </p>
 
-      <div style={{
+      <div className="grid-2"style={{
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
         gap: "1.5rem",
