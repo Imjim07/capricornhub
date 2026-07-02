@@ -35,6 +35,7 @@ export default function Footer() {
         <a href="#services" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Services</a>
         <a href="#products" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Products</a>
         <a href="#contact" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Contact</a>
+        <a href="/store" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Store</a>
       </div>
 
       <p style={{

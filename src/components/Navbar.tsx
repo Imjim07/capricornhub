@@ -29,6 +29,7 @@ justifyContent: "space-between",
             <a href="#services" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Services</a>
             <a href="#products" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Products</a>
             <a href="#contact" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#faefe6", backgroundColor: "#00423d", padding: "0.6rem 1.5rem", borderRadius: "4px" }}>Start a Project</a>
+            <a href="/store" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none", opacity: 0.7 }}>Store</a>
            </div>
 
            <button
