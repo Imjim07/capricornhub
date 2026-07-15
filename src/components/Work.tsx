@@ -1,3 +1,6 @@
+"use client";
+import FadeUp from "@/components/FadeUp";
+
 const projects = [
   {
     name: "Accent Homes",
@@ -134,6 +137,7 @@ export default function Work() {
       backgroundColor: "#faefe6",
       padding: "8rem 2.5rem",
     }}>
+      <FadeUp>
       <div style={{
         display: "flex",
         justifyContent: "space-between",
@@ -172,6 +176,7 @@ export default function Work() {
           <ProjectCard key={p.name} project={p} />
         ))}
       </div>
+      </FadeUp>
     </section>
   );
 }

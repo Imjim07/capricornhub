@@ -1,3 +1,6 @@
+"use client";
+import FadeUp from "@/components/FadeUp";
+
 const webServices = [
   {
     number: "01",
@@ -58,147 +61,142 @@ const brandingTiers = [
 ];
 
 export default function Services() {
+
   return (
     <section id="services" style={{
       backgroundColor: "#00423d",
       padding: "8rem 2.5rem",
     }}>
-      <p style={{
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: "#faefe6",
-        opacity: 0.5,
-        marginBottom: "4rem",
-      }}>
-        What We Do
-      </p>
-
-      <div className="grid-3" style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "3rem",
-        marginBottom: "6rem",
-      }}>
-        {webServices.map((s) => (
-          <div key={s.number} style={{
-            borderTop: "1px solid rgba(250,239,230,0.2)",
-            paddingTop: "2rem",
+      <FadeUp>
+  <p style={{
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#faefe6",
+            opacity: 0.5,
+            marginBottom: "4rem",
           }}>
-            <p style={{
+            What We Do
+          </p><div className="grid-3" style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "3rem",
+            marginBottom: "6rem",
+          }}>
+              {webServices.map((s) => (
+                <div key={s.number} style={{
+                  borderTop: "1px solid rgba(250,239,230,0.2)",
+                  paddingTop: "2rem",
+                }}>
+                  <p style={{
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    color: "#faefe6",
+                    opacity: 0.4,
+                    marginBottom: "1rem",
+                  }}>
+                    {s.number}
+                  </p>
+                  <h3 style={{
+                    fontSize: "1.4rem",
+                    fontWeight: 700,
+                    color: "#faefe6",
+                    marginBottom: "1rem",
+                    lineHeight: 1.2,
+                  }}>
+                    {s.title}
+                  </h3>
+                  <p style={{
+                    fontSize: "0.9rem",
+                    lineHeight: 1.7,
+                    color: "#faefe6",
+                    opacity: 0.6,
+                  }}>
+                    {s.description}
+                  </p>
+                </div>
+              ))}
+            </div><p style={{
               fontSize: "0.75rem",
               fontWeight: 600,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
               color: "#faefe6",
-              opacity: 0.4,
-              marginBottom: "1rem",
+              opacity: 0.5,
+              marginBottom: "2rem",
             }}>
-              {s.number}
-            </p>
-            <h3 style={{
-              fontSize: "1.4rem",
-              fontWeight: 700,
+              Branding and Identity
+            </p><p style={{
+              fontSize: "1rem",
               color: "#faefe6",
-              marginBottom: "1rem",
-              lineHeight: 1.2,
-            }}>
-              {s.title}
-            </h3>
-            <p style={{
-              fontSize: "0.9rem",
-              lineHeight: 1.7,
-              color: "#faefe6",
-              opacity: 0.6,
-            }}>
-              {s.description}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <p style={{
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: "#faefe6",
-        opacity: 0.5,
-        marginBottom: "2rem",
-      }}>
-        Branding and Identity
-      </p>
-
-      <p style={{
-        fontSize: "1rem",
-        color: "#faefe6",
-        opacity: 0.5,
-        marginBottom: "3rem",
-        fontStyle: "italic",
-      }}>
-        Visual identity that makes a business look as serious as it is.
-      </p>
-
-      <div className="grid-3" style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "1.5rem",
-      }}>
-        {brandingTiers.map((tier) => (
-          <div key={tier.name} style={{
-            backgroundColor: tier.featured ? "#faefe6" : "rgba(250,239,230,0.05)",
-            border: tier.featured ? "none" : "1px solid rgba(250,239,230,0.15)",
-            borderRadius: "8px",
-            padding: "2.5rem",
-          }}>
-            <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              marginBottom: "1rem",
-            }}>
-              <h3 style={{
-                fontSize: "1.3rem",
-                fontWeight: 800,
-                color: tier.featured ? "#00423d" : "#faefe6",
-              }}>
-                {tier.name}
-              </h3>
-              <span style={{
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                color: tier.featured ? "#00423d" : "#faefe6",
-                opacity: tier.featured ? 1 : 0.7,
-              }}>
-                {tier.price}
-              </span>
-            </div>
-
-            <p style={{
-              fontSize: "0.8rem",
-              color: tier.featured ? "#00423d" : "#faefe6",
-              opacity: 0.6,
-              marginBottom: "1.5rem",
+              opacity: 0.5,
+              marginBottom: "3rem",
               fontStyle: "italic",
             }}>
-              {tier.tagline}
-            </p>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-              {tier.items.map((item) => (
-                <p key={item} style={{
-                  fontSize: "0.82rem",
-                  color: tier.featured ? "#1a1a1a" : "#faefe6",
-                  opacity: tier.featured ? 0.8 : 0.6,
-                  paddingLeft: "1rem",
-                  borderLeft: tier.featured ? "2px solid #00423d" : "2px solid rgba(250,239,230,0.3)",
+              Visual identity that makes a business look as serious as it is.
+            </p><div className="grid-3" style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1.5rem",
+            }}>
+              {brandingTiers.map((tier) => (
+                <div key={tier.name} style={{
+                  backgroundColor: tier.featured ? "#faefe6" : "rgba(250,239,230,0.05)",
+                  border: tier.featured ? "none" : "1px solid rgba(250,239,230,0.15)",
+                  borderRadius: "8px",
+                  padding: "2.5rem",
                 }}>
-                  {item}
-                </p>
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    marginBottom: "1rem",
+                  }}>
+                    <h3 style={{
+                      fontSize: "1.3rem",
+                      fontWeight: 800,
+                      color: tier.featured ? "#00423d" : "#faefe6",
+                    }}>
+                      {tier.name}
+                    </h3>
+                    <span style={{
+                      fontSize: "0.8rem",
+                      fontWeight: 600,
+                      color: tier.featured ? "#00423d" : "#faefe6",
+                      opacity: tier.featured ? 1 : 0.7,
+                    }}>
+                      {tier.price}
+                    </span>
+                  </div>
+
+                  <p style={{
+                    fontSize: "0.8rem",
+                    color: tier.featured ? "#00423d" : "#faefe6",
+                    opacity: 0.6,
+                    marginBottom: "1.5rem",
+                    fontStyle: "italic",
+                  }}>
+                    {tier.tagline}
+                  </p>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                    {tier.items.map((item) => (
+                      <p key={item} style={{
+                        fontSize: "0.82rem",
+                        color: tier.featured ? "#1a1a1a" : "#faefe6",
+                        opacity: tier.featured ? 0.8 : 0.6,
+                        paddingLeft: "1rem",
+                        borderLeft: tier.featured ? "2px solid #00423d" : "2px solid rgba(250,239,230,0.3)",
+                      }}>
+                        {item}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
+      </FadeUp>
     </section>
   );
 }

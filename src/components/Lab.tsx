@@ -1,9 +1,13 @@
+"use client";
+import FadeUp from "@/components/FadeUp";
+
 export default function Lab() {
   return (
     <section id="lab" style={{
       backgroundColor: "#00423d",
       padding: "8rem 2.5rem",
     }}>
+      <FadeUp>
       <p style={{
         fontSize: "0.75rem",
         fontWeight: 600,
@@ -70,6 +74,7 @@ export default function Lab() {
           </div>
         ))}
       </div>
+      </FadeUp>
     </section>
   );
 }

@@ -38,3 +38,31 @@ html {
     grid-template-columns: 1fr !important;
   }
 }
+
+.node-divider {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .node-spine {
+    display: none !important;
+  }
+  .node-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0;
+  }
+  .nd-line {
+    width: 2px;
+    height: 44px;
+    background: rgba(0, 66, 61, 0.25);
+  }
+  .nd-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 66, 61, 0.3);
+    margin-top: 6px;
+  }
+}

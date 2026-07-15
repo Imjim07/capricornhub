@@ -1,6 +1,11 @@
+"use client";
+import FadeUp from "@/components/FadeUp";
+
 export default function Hero() {
+
   return (
-    <section style={{
+    <section 
+    id="hero"style={{
       minHeight: "100vh",
       backgroundColor: "#faefe6",
       display: "flex",
@@ -8,7 +13,7 @@ export default function Hero() {
       padding: "0 2.5rem",
       paddingTop: "6rem",
     }}>
-      <div style={{ maxWidth: "800px" }}>
+      <FadeUp>
         <p style={{
           fontSize: "0.75rem",
           fontWeight: 600,
@@ -69,7 +74,7 @@ export default function Hero() {
             Start a Project
           </a>
         </div>
-      </div>
+      </FadeUp>
     </section>
   );
 }

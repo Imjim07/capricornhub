@@ -1,3 +1,7 @@
+"use client";
+import FadeUp from "@/components/FadeUp";
+
+
 const forSale = [
   {
     name: "Aurethium Template",
@@ -25,6 +29,7 @@ export default function Products() {
       backgroundColor: "#f0e8de",
       padding: "8rem 2.5rem",
     }}>
+      <FadeUp>
       <p style={{
         fontSize: "0.75rem",
         fontWeight: 600,
@@ -97,6 +102,7 @@ export default function Products() {
           </div>
         ))}
       </div>
+      </FadeUp>
     </section>
   );
 }

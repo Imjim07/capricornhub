@@ -1,6 +1,7 @@
 "use client";
-
 import { useState } from "react";
+import FadeUp from "@/components/FadeUp";
+
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -31,6 +32,7 @@ async function handleSubmit() {
       backgroundColor: "#faefe6",
       padding: "8rem 2.5rem",
     }}>
+      <FadeUp>
       <p style={{
         fontSize: "0.75rem",
         fontWeight: 600,
@@ -187,6 +189,7 @@ async function handleSubmit() {
           </button>
         </div>
       )}
+      </FadeUp>
     </section>
   );
 }
