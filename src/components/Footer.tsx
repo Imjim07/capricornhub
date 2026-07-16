@@ -26,7 +26,7 @@ export default function Footer() {
         }}>
           Lagos, Nigeria
           <br />
-          capricornhubmanagement@gmail.com
+          studio@capricornhub.com
         </p>
       </div>
 
