@@ -1,6 +1,7 @@
 "use client";
 
 import {useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -20,9 +21,14 @@ display: "flex",
 alignItems: "center",
 justifyContent: "space-between",
 }}>
-           <span style={{ fontWeight: 800, fontSize: "1.1rem", color: "#00423d" }}>
-            Capricorn Hub
-           </span>
+           <Image
+            src="/logo.png"
+            alt="Capricorn Hub"
+            width={105}
+            height={28}
+            preload
+            style={{ display: "block", width: "105px", height: "28px" }}
+           />
 
            <div className="desktop-nav" style={{ display: "flex", gap: "2rem", alignItems: "center"}}>
             <a href="#work" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Work</a>
