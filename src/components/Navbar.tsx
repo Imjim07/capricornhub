@@ -71,7 +71,7 @@ justifyContent: "space-between",
           <a href="#services" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Services</a>
           <a href="#products" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Products</a>
           <a href="#contact" onClick={() => setOpen(false)} style={{ fontSize: "0.9rem", fontWeight: 600, color: "#faefe6", backgroundColor: "#00423d", padding: "0.6rem 1.5rem", textDecoration: "none", borderRadius: "4px", display: "inline-block" }}>Start a Project</a>
-          <a href="#store" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Store</a>
+          <a href="/store" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Store</a>
           
         </div>
       )}
