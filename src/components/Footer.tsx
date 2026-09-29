@@ -8,9 +8,6 @@ import { SOCIALS } from "@/components/SocialMarks";
 const links = [
   { href: "/#work", label: "Work" },
   { href: "/#services", label: "Services" },
-  { href: "/#lab", label: "Lab" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/store", label: "Store" },
   { href: "/privacy", label: "Privacy" },
   { href: "/cookies", label: "Cookies" },
 ];
