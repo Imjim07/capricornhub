@@ -1,80 +1,105 @@
 "use client";
 
-import {useState } from "react";
-import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { useRef, useState } from "react";
+import { Menu } from "lucide-react";
+import MobileMenu, { type MenuLink } from "@/components/MobileMenu";
+
+// DESIGN.md §2.1 — the navbar is never inverted. It stays green throughout.
+// The wordmark is set as type: the drawn logo is green with an amber "hub",
+// which is invisible on green and would break §7's two-colour rule.
+
+// Root-relative so they resolve from /[slug] pages too, not just the homepage.
+const links: MenuLink[] = [
+  { href: "/#work", label: "Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/store", label: "Store" },
+];
+
+// MOBILE-MENU.md forbids a CTA button inside the menu, so "Start a Project"
+// becomes a plain Contact band. Four bands is the stated maximum.
+const menuLinks: MenuLink[] = [...links, { href: "/#contact", label: "Contact" }];
+
+const MENU_ID = "mobile-menu";
 
 export default function Navbar() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
-    return (
-        <nav style={{
-position: "fixed",
-top: 0,
-left: 0,
-right: 0,
-zIndex: 100,
-backgroundColor: "#faefe6",
-borderBottom: "1px solid #d4c9bc",
-padding: "1.25rem 2.5rem",
-display: "flex",
-alignItems: "center",
-justifyContent: "space-between",
-}}>
-           <Image
-            src="/logo.png"
-            alt="Capricorn Hub"
-            width={105}
-            height={28}
-            preload
-            style={{ display: "block", width: "105px", height: "28px" }}
-           />
+  return (
+    <nav
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: "var(--surface)",
+        borderBottom: "1px solid var(--hairline)",
+        padding: "var(--s3) var(--gutter)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <a
+        href="/"
+        className="label-ui"
+        style={{
+          fontWeight: 900,
+          letterSpacing: "0.14em",
+          color: "var(--ink)",
+          textDecoration: "none",
+        }}
+      >
+        Capricorn Hub
+      </a>
 
-           <div className="desktop-nav" style={{ display: "flex", gap: "2rem", alignItems: "center"}}>
-            <a href="#work" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Work</a>
-            <a href="#services" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Services</a>
-            <a href="#products" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#1a1a1a", opacity: 0.7}}>Products</a>
-            <a href="#contact" style={{ fontSize: "0.85rem", textDecoration: "none", color: "#faefe6", backgroundColor: "#00423d", padding: "0.6rem 1.5rem", borderRadius: "4px" }}>Start a Project</a>
-            <a href="/store" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none", opacity: 0.7 }}>Store</a>
-           </div>
+      <div
+        className="desktop-nav"
+        style={{ display: "flex", gap: "var(--s4)", alignItems: "center" }}
+      >
+        {links.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="label-ui"
+            style={{ color: "var(--ink-muted)", textDecoration: "none" }}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a href="/#contact" className="btn-outline">
+          Start a Project
+        </a>
+      </div>
 
-           <button
-        onClick={() => setOpen(!open)}
+      <button
+        ref={triggerRef}
+        onClick={() => setOpen(true)}
         className="mobile-menu-btn"
+        aria-label="Open menu"
+        aria-expanded={open}
+        aria-controls={MENU_ID}
         style={{
           display: "none",
           background: "none",
           border: "none",
           cursor: "pointer",
-          fontSize: "1rem",
-          fontWeight: 600,
-          color: "#00423d",
+          color: "var(--ink)",
+          padding: 0,
         }}
       >
-        {open ? <X size={20} /> : <Menu size={20} />}
+        <Menu size={20} />
       </button>
 
       {open && (
-        <div style={{
-          position: "absolute",
-          top: "100%",
-          left: 0,
-          right: 0,
-          backgroundColor: "#faefe6",
-          borderBottom: "1px solid #d4c9bc",
-          padding: "1.5rem 2.5rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1.25rem",
-        }}>
-          <a href="#work" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Work</a>
-          <a href="#services" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Services</a>
-          <a href="#products" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Products</a>
-          <a href="#contact" onClick={() => setOpen(false)} style={{ fontSize: "0.9rem", fontWeight: 600, color: "#faefe6", backgroundColor: "#00423d", padding: "0.6rem 1.5rem", textDecoration: "none", borderRadius: "4px", display: "inline-block" }}>Start a Project</a>
-          <a href="/store" onClick={() => setOpen(false)} style={{ fontSize: "1rem", fontWeight: 500, color: "#1a1a1a", textDecoration: "none" }}>Store</a>
-          
-        </div>
+        <MobileMenu
+          id={MENU_ID}
+          links={menuLinks}
+          onClose={() => setOpen(false)}
+          returnFocusTo={triggerRef}
+        />
       )}
-          </nav>
-    );
-        }
+    </nav>
+  );
+}

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+// DESIGN.md §3 — one family, full weight range. No second family anywhere.
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+  variable: "--font-hanken",
 });
 
 export const metadata: Metadata = {
@@ -20,8 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jakarta.variable}>
+      <body className={hanken.variable}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

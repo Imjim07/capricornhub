@@ -1,7 +1,18 @@
 "use client";
 import { useState } from "react";
-import FadeUp from "@/components/FadeUp";
+import { SOCIALS } from "@/components/SocialMarks";
 
+// DESIGN.md §6 — input rows are a label and a bottom hairline. No box, no
+// background, no radius. Focus raises the hairline to full --ink.
+// The form state, handler and Resend submission path are unchanged.
+
+// TODO(capricornhub): replace the placeholders with the real details.
+// Only the email is confirmed (it matches Footer.tsx).
+const DETAILS = [
+  { label: "Mail", value: "studio@capricornhub.com", href: "mailto:studio@capricornhub.com" },
+  { label: "Phone", value: "+234 902 947 8440" },
+  { label: "Studio", value: "Lagos, Nigeria" },
+];
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -28,168 +39,115 @@ async function handleSubmit() {
 }
 
   return (
-    <section id="contact" style={{
-      backgroundColor: "#faefe6",
-      padding: "8rem 2.5rem",
-    }}>
-      <FadeUp>
-      <p style={{
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: "#00423d",
-        opacity: 0.6,
-        marginBottom: "1rem",
-      }}>
-        Start a Project
-      </p>
-
-      <h2 style={{
-        fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-        fontWeight: 800,
-        color: "#1a1a1a",
-        letterSpacing: "-0.02em",
-        marginBottom: "4rem",
-      }}>
-        Tell us what you need.
+    <section id="contact" className="section">
+      <h2 className="display" style={{ marginBottom: "var(--s7)" }}>
+        Start something.
       </h2>
 
-      {sent ? (
-        <div style={{
-          backgroundColor: "#00423d",
-          borderRadius: "8px",
-          padding: "3rem",
-          maxWidth: "600px",
-        }}>
-          <h3 style={{
-            fontSize: "1.3rem",
-            fontWeight: 700,
-            color: "#faefe6",
-            marginBottom: "0.75rem",
-          }}>
-            Message received.
-          </h3>
-          <p style={{
-            fontSize: "0.9rem",
-            color: "#faefe6",
-            opacity: 0.7,
-          }}>
-            We will get back to you within 24 hours.
-          </p>
+      <div className="col-2" style={{ alignItems: "start" }}>
+        <div>
+          {sent ? (
+            <div style={{ borderTop: "1px solid var(--hairline)", paddingTop: "var(--s3)" }}>
+              <p className="label" style={{ marginBottom: "var(--s2)" }}>
+                Message received
+              </p>
+              <p className="body-copy muted">
+                We will get back to you within 24 hours.
+              </p>
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--s5)" }}>
+              <div>
+                <label htmlFor="ch-name" className="label muted" style={{ display: "block", marginBottom: "var(--s1)" }}>
+                  Your Name
+                </label>
+                <input
+                  id="ch-name"
+                  className="field-row"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="ch-email" className="label muted" style={{ display: "block", marginBottom: "var(--s1)" }}>
+                  Email Address
+                </label>
+                <input
+                  id="ch-email"
+                  className="field-row"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="ch-message" className="label muted" style={{ display: "block", marginBottom: "var(--s1)" }}>
+                  Tell us about your project
+                </label>
+                <textarea
+                  id="ch-message"
+                  className="field-row"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  style={{ resize: "vertical" }}
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => handleSubmit()}
+                className="btn-outline"
+                style={{ alignSelf: "flex-start" }}
+              >
+                Send Message
+              </button>
+            </div>
+          )}
         </div>
-      ) : (
-        <div style={{ maxWidth: "600px", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-          <div>
-            <label style={{
-              display: "block",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#1a1a1a",
-              opacity: 0.5,
-              marginBottom: "0.5rem",
-            }}>
-              Your Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                fontSize: "0.95rem",
-                border: "1px solid rgba(0,66,61,0.2)",
-                borderRadius: "4px",
-                backgroundColor: "#ffffff",
-                color: "#1a1a1a",
-                outline: "none",
-              }}
-            />
-          </div>
 
-          <div>
-            <label style={{
-              display: "block",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#1a1a1a",
-              opacity: 0.5,
-              marginBottom: "0.5rem",
-            }}>
-              Email Address
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                fontSize: "0.95rem",
-                border: "1px solid rgba(0,66,61,0.2)",
-                borderRadius: "4px",
-                backgroundColor: "#ffffff",
-                color: "#1a1a1a",
-                outline: "none",
-              }}
-            />
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "var(--s5)" }}>
+          {DETAILS.map((d) => (
+            <div key={d.label} style={{ borderTop: "1px solid var(--hairline)", paddingTop: "var(--s3)" }}>
+              <p className="label muted" style={{ marginBottom: "var(--s2)" }}>
+                {d.label}
+              </p>
+              <p className="body-copy">
+                {d.href ? (
+                  <a href={d.href} style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--hairline)" }}>
+                    {d.value}
+                  </a>
+                ) : (
+                  d.value
+                )}
+              </p>
+            </div>
+          ))}
 
-          <div>
-            <label style={{
-              display: "block",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#1a1a1a",
-              opacity: 0.5,
-              marginBottom: "0.5rem",
-            }}>
-              Tell us about your project
-            </label>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              rows={5}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                fontSize: "0.95rem",
-                border: "1px solid rgba(0,66,61,0.2)",
-                borderRadius: "4px",
-                backgroundColor: "#ffffff",
-                color: "#1a1a1a",
-                outline: "none",
-                resize: "vertical",
-              }}
-            />
+          <div style={{ borderTop: "1px solid var(--hairline)", paddingTop: "var(--s3)" }}>
+            <p className="label muted" style={{ marginBottom: "var(--s3)" }}>
+              Follow us
+            </p>
+            <div style={{ display: "flex", gap: "var(--s3)" }}>
+              {SOCIALS.map(({ name: social, href, Mark }) => (
+                <a
+                  key={social}
+                  href={href}
+                  aria-label={social}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                >
+                  <Mark />
+                </a>
+              ))}
+            </div>
           </div>
-
-          <button
-            onClick={() => handleSubmit()}
-            style={{
-              padding: "0.85rem 2rem",
-              fontSize: "0.9rem",
-              fontWeight: 600,
-              color: "#faefe6",
-              backgroundColor: "#00423d",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-              alignSelf: "flex-start",
-            }}
-          >
-            Send Message
-          </button>
         </div>
-      )}
-      </FadeUp>
+      </div>
     </section>
   );
 }
