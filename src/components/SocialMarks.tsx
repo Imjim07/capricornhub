@@ -27,16 +27,17 @@ export function LinkedInMark({ size = 20 }: { size?: number }) {
   );
 }
 
-// The Instagram URL is deliberately the bare profile: the stkn= share token
-// and utm_source=qr on the shared link are per-share tracking, not part of the
-// profile address.
+// URLs are the bare profile addresses. The links as shared carried per-share
+// tracking — stkn= and utm_source=qr from an Instagram QR share, s=11 from the
+// X mobile app — which is not part of the profile address and does not belong
+// on every page of the site.
 //
-// TODO(capricornhub): add the X and LinkedIn URLs. An entry with no URL is
-// filtered out below rather than rendered as a dead link, so the icon simply
-// appears once the address is there.
+// TODO(capricornhub): add the LinkedIn URL. An entry with no URL is filtered
+// out below rather than rendered as a dead link, so the icon simply appears
+// once the address is there.
 const ALL_SOCIALS = [
   { name: "Instagram", href: "https://www.instagram.com/capricornhubz", Mark: InstagramMark },
-  { name: "X", href: "", Mark: XMark },
+  { name: "X", href: "https://x.com/capricornhubz", Mark: XMark },
   { name: "LinkedIn", href: "", Mark: LinkedInMark },
 ];
 
