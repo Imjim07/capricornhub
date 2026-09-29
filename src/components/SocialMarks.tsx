@@ -27,9 +27,17 @@ export function LinkedInMark({ size = 20 }: { size?: number }) {
   );
 }
 
-// TODO(capricornhub): replace with the real profile URLs.
-export const SOCIALS = [
-  { name: "Instagram", href: "TODO — add Instagram URL", Mark: InstagramMark },
-  { name: "X", href: "TODO — add X URL", Mark: XMark },
-  { name: "LinkedIn", href: "TODO — add LinkedIn URL", Mark: LinkedInMark },
+// The Instagram URL is deliberately the bare profile: the stkn= share token
+// and utm_source=qr on the shared link are per-share tracking, not part of the
+// profile address.
+//
+// TODO(capricornhub): add the X and LinkedIn URLs. An entry with no URL is
+// filtered out below rather than rendered as a dead link, so the icon simply
+// appears once the address is there.
+const ALL_SOCIALS = [
+  { name: "Instagram", href: "https://www.instagram.com/capricornhubz", Mark: InstagramMark },
+  { name: "X", href: "", Mark: XMark },
+  { name: "LinkedIn", href: "", Mark: LinkedInMark },
 ];
+
+export const SOCIALS = ALL_SOCIALS.filter((s) => s.href.startsWith("https://"));
