@@ -1,49 +1,68 @@
+import { SOCIALS } from "@/components/SocialMarks";
+
+// DESIGN.md §6 — background --surface-deep. Left: a single row of small links
+// at 24px spacing, no pipes or dots. Right: 20px social glyphs on the links'
+// baseline. No columns, no newsletter block, no large logo.
+// §2.1 — the footer is never inverted.
+
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#lab", label: "Lab" },
+  { href: "/#contact", label: "Contact" },
+  { href: "/store", label: "Store" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/cookies", label: "Cookies" },
+];
+
 export default function Footer() {
   return (
-    <footer style={{
-      backgroundColor: "#1a1a1a",
-      padding: "4rem 2.5rem 3rem",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "flex-end",
-      flexWrap: "wrap",
-      gap: "2rem",
-    }}>
-      <div>
-        <p style={{
-          fontSize: "1.1rem",
-          fontWeight: 800,
-          color: "#faefe6",
-          marginBottom: "0.5rem",
-        }}>
-          Capricorn Hub
-        </p>
-        <p style={{
-          fontSize: "0.8rem",
-          color: "#faefe6",
-          opacity: 0.4,
-          lineHeight: 1.7,
-        }}>
-          Lagos, Nigeria
-          <br />
-          studio@capricornhub.com
-        </p>
+    <footer
+      style={{
+        backgroundColor: "var(--surface-deep)",
+        padding: "var(--s6) var(--gutter)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "var(--s4)",
+        }}
+      >
+        <div style={{ display: "flex", gap: "var(--s3)", flexWrap: "wrap" }}>
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="label muted"
+              style={{ textDecoration: "none" }}
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+
+        <div style={{ display: "flex", gap: "var(--s3)", alignItems: "center" }}>
+          {SOCIALS.map(({ name, href, Mark }) => (
+            <a
+              key={name}
+              href={href}
+              aria-label={name}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <Mark />
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div style={{ display: "flex", gap: "2rem" }}>
-        <a href="#work" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Work</a>
-        <a href="#services" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Services</a>
-        <a href="#products" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Products</a>
-        <a href="#contact" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Contact</a>
-        <a href="/store" style={{ fontSize: "0.8rem", color: "#faefe6", opacity: 0.4, textDecoration: "none" }}>Store</a>
-      </div>
-
-      <p style={{
-        fontSize: "0.75rem",
-        color: "#faefe6",
-        opacity: 0.3,
-      }}>
-        2026 Capricorn Hub. All rights reserved.
+      <p className="label muted" style={{ marginTop: "var(--s5)" }}>
+        2026 Capricorn Hub | Lagos, Nigeria
       </p>
     </footer>
   );

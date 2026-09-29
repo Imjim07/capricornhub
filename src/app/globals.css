@@ -1,10 +1,36 @@
 @import "tailwindcss";
 
+/* ===========================================================================
+   Capricorn Hub — see DESIGN.md. Use role tokens, never raw hex.
+   =========================================================================== */
+
 :root {
-  --green: #00423d;
-  --cream: #faefe6;
-  --text: #1a1a1a;
-  --white: #ffffff;
+  /* Colour roles — §2 */
+  --surface: #00423d;
+  --surface-alt: #003a36;
+  --surface-deep: #002b27;
+  --surface-invert: #faefe6;
+  --ink: #faefe6;
+  --ink-muted: rgba(250, 239, 230, 0.62);
+  --ink-invert: #00423d;
+  --hairline: rgba(250, 239, 230, 0.24);
+
+  /* Derived: §6 calls for "a green hairline" on cream sections but names no
+     token for it. Same 0.24 alpha as --hairline, in the inverted ink. */
+  --hairline-invert: rgba(0, 66, 61, 0.24);
+  --ink-invert-muted: rgba(0, 66, 61, 0.62);
+
+  /* Spacing scale — §4. Base unit 8px. */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+  --s6: 96px;
+  --s7: 160px;
+  --s8: 240px;
+
+  --gutter: 40px;
 }
 
 * {
@@ -14,9 +40,9 @@
 }
 
 body {
-  background-color: var(--cream);
-  color: var(--text);
-  font-family: var(--font-jakarta), sans-serif;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-hanken), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -24,29 +50,593 @@ html {
   scroll-behavior: smooth;
 }
 
+/* --- Section shell — §4 rhythm and gutters ------------------------------- */
+
+.section {
+  padding: var(--s7) var(--gutter);
+}
+
+/* §2.1 — the one cream section per page. */
+.section-invert {
+  background-color: var(--surface-invert);
+  color: var(--ink-invert);
+}
+
+/* --- Type — §3. Two sizes, no middle. ----------------------------------- */
+
+.display {
+  font-size: clamp(3.5rem, 15vw, 16rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Nav items and button text sit at the top of the label range — §3. */
+.label-ui {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.body-copy {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  max-width: 68ch;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.section-invert .muted {
+  color: var(--ink-invert-muted);
+}
+
+/* --- Outlined button — §6 ----------------------------------------------- */
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--ink);
+  padding: 14px 32px;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 200ms ease;
+}
+
+.btn-outline:hover {
+  border-color: rgba(250, 239, 230, 0.6);
+}
+
+/* On a cream section — §6. */
+.btn-outline-invert {
+  color: var(--ink-invert);
+  border-color: var(--hairline-invert);
+}
+
+.btn-outline-invert:hover {
+  border-color: rgba(0, 66, 61, 0.6);
+}
+
+.btn-outline:focus-visible,
+.text-link:focus-visible,
+.field-row:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* --- Text link. §2 allows one bordered element per view, so secondary
+       actions are hairline-underlined text rather than a second outline. --- */
+
+.text-link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 500;
+  transition: border-color 200ms ease;
+}
+
+.text-link:hover {
+  border-bottom-color: var(--ink);
+}
+
+.section-invert .text-link {
+  border-bottom-color: var(--hairline-invert);
+}
+
+.section-invert .text-link:hover {
+  border-bottom-color: var(--ink-invert);
+}
+
+/* --- Input / select row — §6. No box, no background, no radius. --------- */
+
+.field-row {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.field-row:focus {
+  border-bottom-color: var(--ink);
+}
+
+.field-row::placeholder {
+  color: var(--ink-muted);
+}
+
+/* Chrome paints autofilled fields white, which would break the green surface. */
+.field-row:-webkit-autofill,
+.field-row:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px var(--surface) inset;
+}
+
+/* --- Imagery — §5. Crop, not cutout. No border, radius or shadow. ------- */
+
+.media {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Top-cropping suits website screenshots, where the interesting part is the
+   top of the page. Photography with a centred subject needs the middle. */
+.media-center img {
+  object-position: center;
+}
+
+/* --- Grids — §4. Cells carry no background, border or padding box. ------ */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--s4);
+  row-gap: var(--s6);
+}
+
+.col-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--s4);
+  row-gap: var(--s6);
+}
+
+.col-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--s4);
+  row-gap: var(--s6);
+}
+
+/* Product grid — 3 / 2 / 1 with a 40px column gap and a much larger 96px row
+   gap. Cells carry no background, border or padding box. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--s4);
+  row-gap: var(--s6);
+}
+
+/* Product card. DELIBERATE EXCEPTION to §1.2 and §7, requested for legibility:
+   the tiers sit on filled --surface panels inside the cream section. Kept as
+   close to the system as possible — square corners, no shadow, no gradient.
+   Text inside flips to --ink, since --ink-invert would be green on green. */
+.product-card {
+  background-color: var(--surface);
+  color: var(--ink);
+  padding: var(--s5) var(--s4);
+  text-align: center;
+  height: 100%;
+}
+
+/* Inside a card the muted role must return to the cream value, or it would
+   resolve to the cream section's dark-green muted and vanish. */
+.section-invert .product-card .muted {
+  color: var(--ink-muted);
+}
+
+.product-card .text-link {
+  border-bottom-color: var(--hairline);
+}
+
+.product-card .text-link:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* The disclosure is user-triggered, so motion is permitted under §1.5. */
+.reveal {
+  animation: reveal-fade 250ms ease both;
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Item detail page — DETAIL-PAGE.md ---------------------------------
+   55/45 columns with no gap element; the whitespace is the gap.
+   ----------------------------------------------------------------------- */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  padding: 120px var(--gutter) 160px;
+}
+
+/* 64px internal inset on all sides of the image column. */
+.detail-image-col {
+  padding: 64px;
+}
+
+.detail-media {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 0;
+  padding: 0;
+  display: block;
+}
+
+.detail-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* The detail column drops roughly one third down the image rather than
+   top-aligning. Percentage padding resolves against the container width: the
+   image column is 55% wide at a 4:5 ratio, so its height is 0.6875 of the
+   grid width and a third of that is ~23%. */
+.detail-col {
+  padding-top: 23%;
+  max-width: 420px;
+}
+
+.thumb-strip {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.thumb[data-active] {
+  border: 1px solid var(--ink);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* One user-triggered crossfade for image swaps. */
+.crossfade {
+  animation: crossfade-in 200ms ease both;
+}
+
+@keyframes crossfade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Option select row — no box, no background, no radius. */
+.select-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: inherit;
+  padding: 12px 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.select-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.select-option[data-unavailable] {
+  color: var(--ink-muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* Full-screen zoom overlay. */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s5);
+  animation: zoom-in 220ms ease both;
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.zoom-close {
+  position: absolute;
+  top: var(--s4);
+  left: var(--gutter);
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+/* Below 900px: single column, image full-bleed, 40px page gutters. */
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+    padding: 96px 0 var(--s6);
+  }
+  .detail-image-col {
+    padding: 0;
+  }
+  .detail-col {
+    padding-top: var(--s5);
+    padding-left: 40px;
+    padding-right: 40px;
+    max-width: none;
+  }
+  .thumb-strip {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* --- Fullscreen mobile menu — MOBILE-MENU.md ---------------------------
+   Tall equal bands, no separators: the tonal shift alone divides them.
+   ----------------------------------------------------------------------- */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  z-index: 100;
+  background-color: var(--surface);
+  display: flex;
+  flex-direction: column;
+  animation: menu-in 220ms ease-out both;
+}
+
+.menu-overlay[data-closing] {
+  animation: menu-out 180ms ease-out both;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* 44x44 hit area, centred so the 20px glyph sits 20px from both edges. */
+.menu-close {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 1;
+  z-index: 1;
+}
+
+.menu-bands {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.menu-band {
+  flex: 1;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background-color: var(--surface);
+}
+
+.menu-band:nth-of-type(even) {
+  background-color: var(--surface-alt);
+}
+
+/* Touch surface: active only, never hover. Declared last so it wins. */
+.menu-band:active {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.menu-socials {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-top: var(--s4);
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+
+/* --- Social icons — §6 footer: 20px glyphs on the links' baseline ------- */
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  transition: color 200ms ease;
+}
+
+.social-link:hover {
+  color: var(--ink);
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .work-grid,
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+  }
+  .section {
+    padding-top: var(--s6);
+    padding-bottom: var(--s6);
+  }
+  .work-grid,
+  .product-grid,
+  .col-3,
+  .col-2 {
+    grid-template-columns: 1fr;
+    row-gap: var(--s5);
+  }
   .desktop-nav {
     display: none !important;
   }
   .mobile-menu-btn {
     display: block !important;
   }
-  .grid-3 {
-    grid-template-columns: 1fr !important;
-  }
-  .grid-2 {
-    grid-template-columns: 1fr !important;
-  }
 }
+
+/* --- Node divider (mobile/tablet only) ---------------------------------
+   Kept deliberately as-is per instruction: it is the logo motif and the only
+   sanctioned exception to §1.5 and §7. The base line and dot are recoloured to
+   the cream hairline because the page surface is now green throughout — at
+   their old rgba(0,66,61,…) they would be invisible. Geometry and motion
+   unchanged. The desktop spine has been removed.
+   ----------------------------------------------------------------------- */
 
 .node-divider {
   display: none;
 }
 
 @media (max-width: 1023px) {
-  .node-spine {
-    display: none !important;
-  }
   .node-divider {
     display: flex;
     flex-direction: column;
@@ -56,13 +646,33 @@ html {
   .nd-line {
     width: 2px;
     height: 44px;
-    background: rgba(0, 66, 61, 0.25);
+    background: var(--hairline);
   }
   .nd-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(0, 66, 61, 0.3);
+    background: var(--ink-muted);
     margin-top: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn-outline,
+  .text-link,
+  .field-row,
+  .social-link {
+    transition: none;
+  }
+  /* Remove these entirely rather than shortening them. */
+  .reveal,
+  .crossfade,
+  .zoom-overlay,
+  .menu-overlay,
+  .menu-overlay[data-closing] {
+    animation: none;
   }
 }

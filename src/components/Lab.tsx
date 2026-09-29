@@ -1,80 +1,36 @@
-"use client";
-import FadeUp from "@/components/FadeUp";
+// DESIGN.md §7 — the two "coming soon" items were bordered, rounded boxes.
+// They are now hairline-topped columns with no box.
+
+const experiments = ["Arduino Projects", "Raspberry Pi Builds"];
 
 export default function Lab() {
   return (
-    <section id="lab" style={{
-      backgroundColor: "#00423d",
-      padding: "8rem 2.5rem",
-    }}>
-      <FadeUp>
-      <p style={{
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        letterSpacing: "0.2em",
-        textTransform: "uppercase",
-        color: "#faefe6",
-        opacity: 0.5,
-        marginBottom: "1rem",
-      }}>
+    <section id="lab" className="section">
+      <h2 className="display" style={{ marginBottom: "var(--s5)" }}>
         The Lab
-      </p>
-
-      <h2 style={{
-        fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-        fontWeight: 800,
-        color: "#faefe6",
-        letterSpacing: "-0.02em",
-        marginBottom: "1.5rem",
-      }}>
-        What we are building next.
       </h2>
 
-      <p style={{
-        fontSize: "1rem",
-        lineHeight: 1.7,
-        color: "#faefe6",
-        opacity: 0.6,
-        maxWidth: "520px",
-        marginBottom: "4rem",
-      }}>
-        Beyond client work, we explore hardware and embedded systems. Arduino and Raspberry Pi projects coming soon.
+      <p className="body-copy muted" style={{ marginBottom: "var(--s7)" }}>
+        Beyond client work, we explore hardware and embedded systems. Arduino
+        and Raspberry Pi projects coming soon.
       </p>
 
-      <div className="grid-2"style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: "1.5rem",
-        maxWidth: "700px",
-      }}>
-        {["Arduino Projects", "Raspberry Pi Builds"].map((item) => (
-          <div key={item} style={{
-            border: "1px solid rgba(250,239,230,0.2)",
-            borderRadius: "8px",
-            padding: "2rem",
-          }}>
-            <p style={{
-              fontSize: "0.65rem",
-              fontWeight: 600,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "#faefe6",
-              opacity: 0.4,
-              marginBottom: "0.75rem",
-            }}>
+      <div className="col-2" style={{ maxWidth: "700px" }}>
+        {experiments.map((item) => (
+          <div
+            key={item}
+            style={{
+              borderTop: "1px solid var(--hairline)",
+              paddingTop: "var(--s3)",
+            }}
+          >
+            <p className="label muted" style={{ marginBottom: "var(--s2)" }}>
               Coming Soon
             </p>
-            <h3 style={{
-              fontSize: "1.1rem",
-              fontWeight: 700,
-              color: "#faefe6",
-            }}>
-              {item}
-            </h3>
+            <p className="label">{item}</p>
           </div>
         ))}
       </div>
-      </FadeUp>
     </section>
   );
 }
