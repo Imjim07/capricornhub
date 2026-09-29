@@ -21,7 +21,8 @@ export type CaseStudyItem = {
   slug: string;
   title: string;
   category: string;
-  previewUrl: string;
+  /** Project imagery. Replaced the live microlink screenshots. */
+  image: { src: string; alt: string };
   liveUrl?: string;
   summary: string;
   scope: string[];
@@ -73,7 +74,10 @@ export const caseStudies: CaseStudyItem[] = [
     slug: "accent-homes",
     title: "Accent Homes",
     category: "Web Platform",
-    previewUrl: "https://accenthomesltd.com",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700797/image_6_hwlpzt.png",
+      alt: "The Accent Homes short-let booking platform",
+    },
     liveUrl: "https://accenthomesltd.com",
     summary:
       "Luxury short-let booking platform. Guests browse listings, check availability and pay online; the operator manages inventory from a single dashboard.",
@@ -90,7 +94,10 @@ export const caseStudies: CaseStudyItem[] = [
     slug: "akarm",
     title: "AKARM",
     category: "Fashion Brand",
-    previewUrl: "https://akarm.vercel.app",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700797/image_5_co7uko.png",
+      alt: "The AKARM fashion homepage and lookbook",
+    },
     liveUrl: "https://akarm.vercel.app",
     summary:
       "Homepage and lookbook for a premium unisex fashion label. Editorial layout with content managed by the client rather than the developer.",
@@ -107,7 +114,10 @@ export const caseStudies: CaseStudyItem[] = [
     slug: "avalanche-engineering",
     title: "Avalanche Engineering",
     category: "Corporate Site",
-    previewUrl: "https://avalanche-engs.com",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700798/image_4_dlicy3.png",
+      alt: "The Avalanche Engineering corporate site",
+    },
     liveUrl: "https://avalanche-engs.com",
     summary:
       "Corporate site for a water treatment and facility management company, including an Education Hub of technical articles for prospective clients.",

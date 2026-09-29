@@ -84,7 +84,6 @@ export default function CookiePolicyPage() {
         <List
           items={[
             "Cloudinary — image hosting.",
-            "Microlink — generates the website preview screenshots in our Work section.",
             ENTITY.hosting + " — hosts the site and keeps standard server request logs.",
           ]}
         />

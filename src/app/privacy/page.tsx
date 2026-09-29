@@ -72,10 +72,10 @@ export default function PrivacyPage() {
           approximate your location.
         </P>
         <P>
-          Loading this site also causes your browser to request files from
-          providers we use to serve images and screenshots. Those providers
-          receive your IP address and basic request information as a normal part
-          of delivering the file. They are listed under Who we share it with.
+          Loading this site also causes your browser to request image files
+          from the provider we use to serve them. That provider receives your IP
+          address and basic request information as a normal part of delivering
+          the file. It is listed under Who we share it with.
         </P>
 
         <H>Cookies</H>
@@ -122,7 +122,6 @@ export default function PrivacyPage() {
             "Google (Google Analytics) — site usage measurement, and the analytics cookies above.",
             "Resend — delivers contact form submissions to our inbox. Receives the name, email and message you submit.",
             "Cloudinary — hosts images on the site. Receives your IP address when your browser loads an image.",
-            "Microlink — generates the website preview screenshots shown in our Work section. Receives your IP address when those load.",
             ENTITY.hosting + " — hosts the site and processes standard server request logs.",
           ]}
         />

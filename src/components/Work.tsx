@@ -22,11 +22,7 @@ export default function Work() {
           >
             <div className="media" style={{ height: "260px" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={"https://api.microlink.io?url=" + p.previewUrl + "&screenshot=true&meta=false&embed=screenshot.url"}
-                alt={p.title}
-                loading="lazy"
-              />
+              <img src={p.image.src} alt={p.image.alt} loading="lazy" />
             </div>
             <p className="label" style={{ marginTop: "var(--s3)" }}>
               {p.title}

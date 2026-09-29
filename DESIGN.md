@@ -199,3 +199,4 @@ decided deliberately — if you are about to add a row, raise it first.
 | Pricing tier panels | §1.2 "no cards", §7 "no cards or tiles" | The three tiers sit on filled `--surface` panels inside the cream section, for legibility. Kept minimal: square corners, no shadow, no gradient, no border. Text inside flips to `--ink`. |
 | Pricing tier name | §3 labels are `12px` / `+0.1em` | Set at `11px` / `+0.08em` per the product-grid spec. |
 | `NodeDivider` (mobile only) | §1.5 "nothing decorative moves", §7 "no third colour" | The logo motif, kept as the page's only decorative motion. The desktop spine was removed. |
+| Work screenshots | §5 "screenshots of websites do not float on green" | The three case-study images keep their full browser chrome — tab bar, address bar, window controls. Chosen deliberately: the frame reads as "this is a live site". Crop the top ~11% at the CDN to reverse. |

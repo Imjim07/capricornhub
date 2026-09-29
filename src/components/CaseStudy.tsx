@@ -6,17 +6,12 @@ import type { CaseStudyItem } from "@/data/items";
 // column, no breadcrumbs, no related items, nothing sticky.
 
 export default function CaseStudy({ item }: { item: CaseStudyItem }) {
-  const shot =
-    "https://api.microlink.io?url=" +
-    item.previewUrl +
-    "&screenshot=true&meta=false&embed=screenshot.url";
-
   return (
     <div className="detail-grid">
       <div className="detail-image-col">
         <div className="detail-media" style={{ cursor: "default" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={shot} alt={item.title} />
+          <img src={item.image.src} alt={item.image.alt} />
         </div>
       </div>
 
