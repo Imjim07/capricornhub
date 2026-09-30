@@ -20,11 +20,12 @@ export default function Services() {
               href={"/services/" + service.slug}
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
-              {/* Both service photographs are portrait, so the box is too.
-                  A landscape crop cut the tote bag and the tile stack in half. */}
+              {/* Square: the code screenshot is ~1:1 and a 4:5 box cropped its
+                  line numbers and line ends. The tote is portrait but centred
+                  with margin, so it loses only empty space. */}
               <div
                 className="media media-center"
-                style={{ aspectRatio: "4 / 5", maxWidth: "360px" }}
+                style={{ aspectRatio: "1 / 1", maxWidth: "360px" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={service.image.src} alt={service.image.alt} loading="lazy" />

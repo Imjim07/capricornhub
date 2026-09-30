@@ -40,12 +40,11 @@ export default async function ServicePage({
       <Navbar />
 
       <section className="section" style={{ paddingTop: "var(--s8)" }}>
-        {/* Was a full-bleed 16:7 band. Both source photographs are portrait,
-            so the box is a constrained 4:5 rather than a wide band that cut
-            the subject in half. */}
+        {/* Square, matching the cards on the homepage: the code screenshot is
+            ~1:1 and a taller box cropped its line numbers and line ends. */}
         <div
           className="media media-center"
-          style={{ aspectRatio: "4 / 5", maxWidth: "480px", marginBottom: "var(--s6)" }}
+          style={{ aspectRatio: "1 / 1", maxWidth: "480px", marginBottom: "var(--s6)" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={service.image.src} alt={service.image.alt} />

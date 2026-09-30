@@ -226,8 +226,8 @@ export const services: Service[] = [
     image: {
       // f_auto,q_auto lets Cloudinary serve WebP/AVIF and pick quality.
       // Never link the untransformed source.
-      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790694902/IMG_1068_1_ilyq8g.jpg",
-      alt: "A code editor open on a Solidity smart-contract project, photographed at an angle",
+      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790726224/coddev_zko58m.png",
+      alt: "A syntax-highlighted screenshot of the React component that builds this site's hero section",
       credit: "Capricorn Hub",
     },
     tierSlugs: ["starter", "studio", "scale"],
