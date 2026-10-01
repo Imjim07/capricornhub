@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { H, P, List } from "@/components/LegalText";
 import { ENTITY } from "@/data/entity";
 
@@ -23,7 +21,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main>
-      <Navbar />
 
       <section className="section section-invert" style={{ paddingTop: "var(--s8)" }}>
         <h1 className="display" style={{ marginBottom: "var(--s6)" }}>
@@ -208,7 +205,6 @@ export default function PrivacyPage() {
         </P>
       </section>
 
-      <Footer />
     </main>
   );
 }

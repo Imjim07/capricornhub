@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { H, P, List } from "@/components/LegalText";
 import { ENTITY } from "@/data/entity";
 
@@ -23,7 +21,6 @@ export const metadata: Metadata = {
 export default function CookiePolicyPage() {
   return (
     <main>
-      <Navbar />
 
       <section className="section section-invert" style={{ paddingTop: "var(--s8)" }}>
         <h1 className="display" style={{ marginBottom: "var(--s6)" }}>
@@ -136,7 +133,6 @@ export default function CookiePolicyPage() {
         </P>
       </section>
 
-      <Footer />
     </main>
   );
 }

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import CaseStudy from "@/components/CaseStudy";
 import ItemDetail from "@/components/ItemDetail";
 import { allItems, getItem } from "@/data/items";
@@ -36,13 +34,11 @@ export default async function ItemPage({
 
   return (
     <main>
-      <Navbar />
       {item.kind === "case-study" ? (
         <CaseStudy item={item} />
       ) : (
         <ItemDetail item={item} />
       )}
-      <Footer />
     </main>
   );
 }
