@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { services, getService, tiersFor } from "@/data/items";
 
 export function generateStaticParams() {
@@ -37,7 +35,6 @@ export default async function ServicePage({
 
   return (
     <main>
-      <Navbar />
 
       <section className="section" style={{ paddingTop: "var(--s8)" }}>
         {/* Square, matching the cards on the homepage: the code screenshot is
@@ -104,8 +101,6 @@ export default async function ServicePage({
           Photograph: {service.image.credit}
         </p>
       </section>
-
-      <Footer />
     </main>
   );
 }

@@ -1,9 +1,7 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import NodeDivider from "@/components/NodeDivider";
 import Reveal from "@/components/Reveal";
 // import Lab from "@/components/Lab";
@@ -18,7 +16,6 @@ import Reveal from "@/components/Reveal";
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <Hero />
       <NodeDivider/>
       <Services />
@@ -33,7 +30,6 @@ export default function Home() {
         <Contact />
       </Reveal>
       <NodeDivider/>
-      <Footer />
     </main>
   );
 }

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import Analytics from "@/components/Analytics";
 import ThemeScript from "@/components/ThemeScript";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 // DESIGN.md §3 — one family, full weight range. No second family anywhere.
@@ -25,8 +27,12 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
+      {/* Navbar and Footer live here, outside template.tsx, so they stay put
+          while only the page content cross-fades between routes. */}
       <body className={hanken.variable}>
+        <Navbar />
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>
