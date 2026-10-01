@@ -293,6 +293,27 @@ html {
   border: 1px solid var(--hairline);
 }
 
+/* Hover pop. The image scales inside its own box, which has overflow:hidden,
+   so the frame holds its size and nothing in the layout shifts. Motion
+   answering a user action, which §1.5 permits. Only on devices that actually
+   hover — a touch device would otherwise fire it on tap and hold it there. */
+@media (hover: hover) {
+  .media-pop img {
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  a:hover .media-pop img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-pop img,
+  a:hover .media-pop img {
+    transition: none;
+    transform: none;
+  }
+}
+
 /* --- Grids — §4. Cells carry no background, border or padding box. ------ */
 
 .work-grid {

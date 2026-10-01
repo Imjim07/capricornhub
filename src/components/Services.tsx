@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { services } from "@/data/items";
-import ZoomableImage from "@/components/ZoomableImage";
 import Reveal from "@/components/Reveal";
 
 // Two services, each led by an image. The tiers under each one live on its
 // own page at /services/<slug>.
 //
-// media-edge puts a hairline round the image: the tote photograph's own
-// background is --surface, so without an edge it has no visible boundary.
+// The image and the text are one link to that page; the image pops on hover
+// inside its own box. media-edge puts a hairline round it, because the tote
+// photograph's own background is --surface and would otherwise have no edge.
 
 export default function Services() {
   return (
@@ -19,17 +19,18 @@ export default function Services() {
       <div className="col-2">
         {services.map((service, i) => (
           <Reveal key={service.slug} delay={i * 80}>
-            <ZoomableImage
-              src={service.image.src}
-              alt={service.image.alt}
-              className="media media-center media-edge"
-              style={{ aspectRatio: "1 / 1", maxWidth: "360px" }}
-            />
-
             <Link
               href={"/services/" + service.slug}
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
+              <div
+                className="media media-center media-edge media-pop"
+                style={{ aspectRatio: "1 / 1", maxWidth: "360px" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={service.image.src} alt={service.image.alt} loading="lazy" />
+              </div>
+
               <p className="label" style={{ marginTop: "var(--s3)" }}>
                 {service.title}
               </p>
