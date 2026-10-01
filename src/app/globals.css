@@ -337,6 +337,29 @@ html {
   display: block;
 }
 
+/* Logos need the whole mark, not a crop. The source carries --surface as its
+   background, so the fitted area is seamless rather than letterboxed. */
+.detail-media.is-contain img {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* A wordmark standing in for an image. Display type (§3) sized to the column
+   rather than the viewport, so it fills the box without overflowing it. */
+.detail-wordmark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.82;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  color: var(--ink);
+}
+
 /* The detail column drops roughly one third down the image rather than
    top-aligning. Percentage padding resolves against the container width: the
    image column is 55% wide at a 4:5 ratio, so its height is 0.6875 of the

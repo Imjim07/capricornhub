@@ -9,9 +9,21 @@ export default function CaseStudy({ item }: { item: CaseStudyItem }) {
   return (
     <div className="detail-grid">
       <div className="detail-image-col">
-        <div className="detail-media" style={{ cursor: "default" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={item.image.src} alt={item.image.alt} />
+        <div
+          className={
+            "detail-media" +
+            (item.detail.kind === "image" && item.detail.fit === "contain"
+              ? " is-contain"
+              : "")
+          }
+          style={{ cursor: "default" }}
+        >
+          {item.detail.kind === "wordmark" ? (
+            <div className="detail-wordmark">{item.detail.text}</div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={item.detail.src} alt={item.detail.alt} />
+          )}
         </div>
       </div>
 
