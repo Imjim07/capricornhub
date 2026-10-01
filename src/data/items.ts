@@ -16,13 +16,20 @@ export type SelectOption = {
   available: boolean;
 };
 
+/** What fills the image column on a case study page. */
+export type CaseStudyVisual =
+  | { kind: "image"; src: string; alt: string; fit?: "cover" | "contain" }
+  | { kind: "wordmark"; text: string };
+
 export type CaseStudyItem = {
   kind: "case-study";
   slug: string;
   title: string;
   category: string;
-  /** Project imagery. Replaced the live microlink screenshots. */
+  /** The screenshot on the Work card. */
   image: { src: string; alt: string };
+  /** The detail page visual, which is deliberately not the card screenshot. */
+  detail: CaseStudyVisual;
   liveUrl?: string;
   summary: string;
   scope: string[];
@@ -78,6 +85,16 @@ export const caseStudies: CaseStudyItem[] = [
       src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700797/image_6_hwlpzt.png",
       alt: "The Accent Homes short-let booking platform",
     },
+    // b_rgb:00423d composites --surface at the CDN. The source is a
+    // transparent PNG, and f_auto serves JPEG to browsers that do not
+    // advertise WebP, which would flatten the alpha to white and make a
+    // white logo invisible.
+    detail: {
+      kind: "image",
+      src: "https://res.cloudinary.com/df5uashml/image/upload/b_rgb:00423d,f_auto,q_auto,w_1000/v1783203482/taccent2_cebtvp.png",
+      alt: "The Accent Homes logo",
+      fit: "contain",
+    },
     liveUrl: "https://accenthomesltd.com",
     summary:
       "Luxury short-let booking platform. Guests browse listings, check availability and pay online; the operator manages inventory from a single dashboard.",
@@ -98,6 +115,7 @@ export const caseStudies: CaseStudyItem[] = [
       src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700797/image_5_co7uko.png",
       alt: "The AKARM fashion homepage and lookbook",
     },
+    detail: { kind: "wordmark", text: "AKARM" },
     liveUrl: "https://akarm.vercel.app",
     summary:
       "Homepage and lookbook for a premium unisex fashion label. Editorial layout with content managed by the client rather than the developer.",
@@ -117,6 +135,12 @@ export const caseStudies: CaseStudyItem[] = [
     image: {
       src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790700798/image_4_dlicy3.png",
       alt: "The Avalanche Engineering corporate site",
+    },
+    detail: {
+      kind: "image",
+      src: "https://res.cloudinary.com/df5uashml/image/upload/b_rgb:00423d,f_auto,q_auto,w_1000/v1790804776/avalanchelogo_uot4ld.png",
+      alt: "The Avalanche Engineering logo",
+      fit: "contain",
     },
     liveUrl: "https://avalanche-engs.com",
     summary:

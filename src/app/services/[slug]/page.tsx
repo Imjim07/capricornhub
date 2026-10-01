@@ -42,8 +42,10 @@ export default async function ServicePage({
       <section className="section" style={{ paddingTop: "var(--s8)" }}>
         {/* Square, matching the cards on the homepage: the code screenshot is
             ~1:1 and a taller box cropped its line numbers and line ends. */}
+        {/* No hover pop and no zoom here: this is the page's own hero, not a
+            link, so motion would imply an interaction that does not exist. */}
         <div
-          className="media media-center"
+          className="media media-center media-edge"
           style={{ aspectRatio: "1 / 1", maxWidth: "480px", marginBottom: "var(--s6)" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -90,7 +92,7 @@ export default async function ServicePage({
               </p>
 
               <div style={{ marginTop: "var(--s3)" }}>
-                <Link href={"/" + tier.slug} className="text-link">
+                <Link href={"/" + tier.slug} className="btn-glass">
                   See more
                 </Link>
               </div>

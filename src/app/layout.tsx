@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import Analytics from "@/components/Analytics";
+import ThemeScript from "@/components/ThemeScript";
 import "./globals.css";
 
 // DESIGN.md §3 — one family, full weight range. No second family anywhere.
@@ -20,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body className={hanken.variable}>
         {children}
         <Analytics />

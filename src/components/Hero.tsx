@@ -30,11 +30,11 @@ export default function Hero() {
       </p>
 
       <div style={{ display: "flex", gap: "var(--s4)", alignItems: "center", flexWrap: "wrap" }}>
-        <a href="#contact" className="btn-outline">
+        <a href="#contact" className="btn-glass">
           Start a Project
         </a>
-        {/* §2 allows one bordered element per view, so the secondary action is
-            a hairline-underlined text link rather than a second outline. */}
+        {/* The secondary action stays a hairline-underlined text link so the
+            glass button is the only emphasised control in the view. */}
         <a href="#work" className="text-link">
           See Our Work
         </a>

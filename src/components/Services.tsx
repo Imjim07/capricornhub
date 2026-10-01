@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { services } from "@/data/items";
+import Reveal from "@/components/Reveal";
 
-// Two services, each led by a photograph. The tiers that sit under each one
-// live on its own page at /services/<slug> — see DETAIL-PAGE.md.
-// DESIGN.md §5 — the image is a crop that owns its edges: no border, no
-// radius, no shadow, no overlay.
+// Two services, each led by an image. The tiers under each one live on its
+// own page at /services/<slug>.
+//
+// The image and the text are one link to that page; the image pops on hover
+// inside its own box. media-edge puts a hairline round it, because the tote
+// photograph's own background is --surface and would otherwise have no edge.
 
 export default function Services() {
   return (
@@ -14,17 +17,14 @@ export default function Services() {
       </h2>
 
       <div className="col-2">
-        {services.map((service) => (
-          <div key={service.slug}>
+        {services.map((service, i) => (
+          <Reveal key={service.slug} delay={i * 80}>
             <Link
               href={"/services/" + service.slug}
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
-              {/* Square: the code screenshot is ~1:1 and a 4:5 box cropped its
-                  line numbers and line ends. The tote is portrait but centred
-                  with margin, so it loses only empty space. */}
               <div
-                className="media media-center"
+                className="media media-center media-edge media-pop"
                 style={{ aspectRatio: "1 / 1", maxWidth: "360px" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -42,12 +42,12 @@ export default function Services() {
 
             <Link
               href={"/services/" + service.slug}
-              className="text-link"
+              className="btn-glass"
               style={{ marginTop: "var(--s3)" }}
             >
               See more
             </Link>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
