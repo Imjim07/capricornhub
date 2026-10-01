@@ -202,3 +202,23 @@ decided deliberately — if you are about to add a row, raise it first.
 | Work screenshots | §5 "screenshots of websites do not float on green" | The three case-study images keep their full browser chrome — tab bar, address bar, window controls. Chosen deliberately: the frame reads as "this is a live site". Crop the top ~11% at the CDN to reverse. |
 | Scroll reveals | §1.5 "nothing decorative moves", §7 "do not fade-and-slide-up every section on scroll" | Sections fade and rise 12px once as they enter view (`Reveal`, built on react-intersection-observer). Kept restrained: 600ms, fires once, never on the hero, and removed entirely under `prefers-reduced-motion`. |
 | Navbar wordmark | §7 "do not add a third colour" (as drawn) | `public/logo.png` is green with an amber "hub" and is invisible on `--surface`. It is CSS-masked and filled with `--ink`, so the drawn letterforms survive but the mark becomes single colour. A cream two-tone asset would remove the need. |
+| `.btn-glass` ("See more") | §1.2 "no chrome", §6 "no fill, no lift, no scale", §7 "no rounded corners, shadows, or gradients" | Liquid-glass pill: blur, gradient, pill radius, lift on hover, press inward on active. Requested knowingly. Adapted to cream/green rather than the reference's blue, so §1.4 still holds, and all motion is removed under `prefers-reduced-motion`. |
+| Theme toggle | Same as above, plus §2 "exactly one outlined element per view" | Dark/light switch in the navbar, same glass treatment with a travelling glow thumb. Motion answers a user action, so §1.5 is satisfied. |
+
+---
+
+## 9. Themes
+
+The site ships two themes built from the same roles. Dark is the default:
+`--surface` deep green, `--ink` cream. Light inverts them — cream surface,
+green ink — and flips `--surface-invert` to green so the one inverted section
+per page (§2.1) stays a contrast event rather than vanishing into the page.
+
+Both themes live in a single token block in `globals.css`. No component reads
+the theme; everything resolves through roles, so a component written to §2 is
+automatically correct in both. **Never write a literal colour in a component**
+— that is the rule that makes theming free, and it is why §2 insists on roles.
+
+The choice persists in `localStorage` under `ch-theme` and is applied to
+`<html>` by an inline script before first paint, so there is no flash of the
+wrong theme.

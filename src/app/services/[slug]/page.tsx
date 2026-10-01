@@ -90,7 +90,7 @@ export default async function ServicePage({
               </p>
 
               <div style={{ marginTop: "var(--s3)" }}>
-                <Link href={"/" + tier.slug} className="text-link">
+                <Link href={"/" + tier.slug} className="btn-glass">
                   See more
                 </Link>
               </div>

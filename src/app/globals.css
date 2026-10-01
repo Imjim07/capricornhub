@@ -4,6 +4,9 @@
    Capricorn Hub — see DESIGN.md. Use role tokens, never raw hex.
    =========================================================================== */
 
+/* Dark is the default: deep green surface, cream ink (§2). Light inverts the
+   roles below. Every colour in the site resolves through these, so the two
+   themes are this one block — no component knows which theme is active. */
 :root {
   /* Colour roles — §2 */
   --surface: #00423d;
@@ -20,6 +23,12 @@
   --hairline-invert: rgba(0, 66, 61, 0.24);
   --ink-invert-muted: rgba(0, 66, 61, 0.62);
 
+  /* Hover state for the outlined button, and the touch tint on a menu band.
+     Tokens rather than literals so they flip with the theme. */
+  --hairline-strong: rgba(250, 239, 230, 0.6);
+  --hairline-strong-invert: rgba(0, 66, 61, 0.6);
+  --tap-tint: rgba(255, 255, 255, 0.04);
+
   /* Spacing scale — §4. Base unit 8px. */
   --s1: 8px;
   --s2: 16px;
@@ -31,6 +40,33 @@
   --s8: 240px;
 
   --gutter: 40px;
+}
+
+/* Light theme: the same roles with surface and ink swapped. --surface-invert
+   becomes green so the one inverted section (Pricing) stays a contrast event
+   rather than disappearing into the page. */
+:root[data-theme="light"] {
+  --surface: #faefe6;
+  --surface-alt: #f3e7dc;
+  --surface-deep: #ece0d3;
+  --surface-invert: #00423d;
+  --ink: #00423d;
+  --ink-muted: rgba(0, 66, 61, 0.62);
+  --ink-invert: #faefe6;
+  --hairline: rgba(0, 66, 61, 0.24);
+  --hairline-invert: rgba(250, 239, 230, 0.24);
+  --ink-invert-muted: rgba(250, 239, 230, 0.62);
+  --hairline-strong: rgba(0, 66, 61, 0.6);
+  --hairline-strong-invert: rgba(250, 239, 230, 0.6);
+  --tap-tint: rgba(0, 0, 0, 0.04);
+}
+
+/* The theme is set on <html> before paint, so there is no flash. Transition
+   the surface only, and not for someone who asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: background-color 240ms ease, color 240ms ease;
+  }
 }
 
 * {
@@ -125,7 +161,7 @@ html {
 }
 
 .btn-outline:hover {
-  border-color: rgba(250, 239, 230, 0.6);
+  border-color: var(--hairline-strong);
 }
 
 /* On a cream section — §6. */
@@ -135,7 +171,7 @@ html {
 }
 
 .btn-outline-invert:hover {
-  border-color: rgba(0, 66, 61, 0.6);
+  border-color: var(--hairline-strong-invert);
 }
 
 .btn-outline:focus-visible,
@@ -615,7 +651,7 @@ html {
 
 /* Touch surface: active only, never hover. Declared last so it wins. */
 .menu-band:active {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: var(--tap-tint);
 }
 
 .menu-socials {
@@ -624,6 +660,177 @@ html {
   gap: 24px;
   padding-top: var(--s4);
   padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+
+/* --- Liquid glass — DELIBERATE §8 EXCEPTION -----------------------------
+   Radius, gradient, shadow, blur and hover scale all break §1.2, §6 and §7.
+   Requested knowingly; adapted to cream/green so §1.4's two-colour rule at
+   least holds. Everything resolves through role tokens, so both themes work.
+   ----------------------------------------------------------------------- */
+
+.btn-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background-image: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--ink) 14%, transparent),
+    color-mix(in srgb, var(--ink) 4%, transparent)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--ink) 22%, transparent) inset,
+    0 10px 24px -12px color-mix(in srgb, var(--ink) 45%, transparent);
+  cursor: pointer;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+/* Hover: lifts off the surface. */
+.btn-glass:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--hairline-strong);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--ink) 34%, transparent) inset,
+    0 18px 34px -14px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+/* Press: pushes in. The drop shadow flips inward and the lift collapses. */
+.btn-glass:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow:
+    0 2px 8px color-mix(in srgb, var(--ink) 30%, transparent) inset,
+    0 2px 6px -4px color-mix(in srgb, var(--ink) 40%, transparent);
+  transition-duration: 90ms;
+}
+
+.btn-glass:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* On the cream inversion, .section-invert has already flipped --ink for its
+   subtree, so the glass picks up the right colour with no extra rule. */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glass,
+  .btn-glass:hover,
+  .btn-glass:active {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* --- Theme toggle — same §8 exception ----------------------------------- */
+
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 62px;
+  height: 32px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background-image: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--ink) 12%, transparent),
+    color-mix(in srgb, var(--ink) 3%, transparent)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 20%, transparent) inset;
+  cursor: pointer;
+  transition: border-color 220ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--hairline-strong);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* The glowing thumb. It travels; it does not fade. */
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 35% 30%,
+    var(--ink),
+    color-mix(in srgb, var(--ink) 78%, transparent)
+  );
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--ink) 55%, transparent),
+    0 0 20px color-mix(in srgb, var(--ink) 30%, transparent);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle[data-on] .theme-toggle-thumb {
+  transform: translateX(30px);
+}
+
+/* Icons sit under the thumb; whichever it covers reads as inverted. */
+.theme-toggle-icon {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+  transition: opacity 320ms ease, color 320ms ease;
+  pointer-events: none;
+}
+
+.theme-toggle-icon.is-sun {
+  left: 0;
+  color: var(--surface);
+  opacity: 1;
+}
+
+.theme-toggle-icon.is-moon {
+  right: 0;
+  color: var(--ink);
+  opacity: 0.55;
+}
+
+.theme-toggle[data-on] .theme-toggle-icon.is-sun {
+  color: var(--ink);
+  opacity: 0.55;
+}
+
+.theme-toggle[data-on] .theme-toggle-icon.is-moon {
+  color: var(--surface);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-thumb,
+  .theme-toggle-icon {
+    transition: none;
+  }
 }
 
 /* --- Social icons — §6 footer: 20px glyphs on the links' baseline ------- */
@@ -667,9 +874,17 @@ html {
   .desktop-nav {
     display: none !important;
   }
-  .mobile-menu-btn {
-    display: block !important;
+  .mobile-controls {
+    display: flex !important;
   }
+}
+
+/* Mobile controls (theme toggle + hamburger) are hidden until the breakpoint
+   above turns them on. */
+.mobile-controls {
+  display: none;
+  align-items: center;
+  gap: var(--s3);
 }
 
 /* --- Node divider (mobile/tablet only) ---------------------------------

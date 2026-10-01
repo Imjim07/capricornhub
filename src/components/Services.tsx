@@ -41,7 +41,7 @@ export default function Services() {
 
             <Link
               href={"/services/" + service.slug}
-              className="text-link"
+              className="btn-glass"
               style={{ marginTop: "var(--s3)" }}
             >
               See more
