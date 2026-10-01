@@ -140,10 +140,25 @@ html {
 
 .btn-outline:focus-visible,
 .text-link:focus-visible,
-.field-row:focus-visible,
 .social-link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+/* --- Navbar wordmark ----------------------------------------------------
+   public/logo.png is the green mark with an amber "hub" on transparency,
+   which is invisible on --surface. Masking fills the logo's own shape with
+   --ink exactly, rather than approximating cream with a filter chain. The
+   two-tone mark becomes single colour, which is the trade for visibility.
+   ----------------------------------------------------------------------- */
+
+.navbar-logo {
+  display: block;
+  width: 105px;
+  height: 28px;
+  background-color: var(--ink);
+  -webkit-mask: url("/logo.png") no-repeat center / contain;
+  mask: url("/logo.png") no-repeat center / contain;
 }
 
 /* --- Text link. §2 allows one bordered element per view, so secondary
@@ -192,7 +207,11 @@ html {
   transition: border-color 200ms ease;
 }
 
-.field-row:focus {
+/* No outline box on focus — the underline brightening to full --ink is the
+   focus indicator, so removing the ring costs nothing in accessibility. */
+.field-row:focus,
+.field-row:focus-visible {
+  outline: none;
   border-bottom-color: var(--ink);
 }
 
@@ -230,6 +249,12 @@ html {
    top of the page. Photography with a centred subject needs the middle. */
 .media-center img {
   object-position: center;
+}
+
+/* A hairline edge so an image whose own background matches --surface (the
+   tote) still reads as a defined object. §1.2 permits deliberate hairlines. */
+.media-edge {
+  border: 1px solid var(--hairline);
 }
 
 /* --- Grids — §4. Cells carry no background, border or padding box. ------ */

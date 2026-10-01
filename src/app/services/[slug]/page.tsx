@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ZoomableImage from "@/components/ZoomableImage";
 import { services, getService, tiersFor } from "@/data/items";
 
 export function generateStaticParams() {
@@ -42,13 +43,12 @@ export default async function ServicePage({
       <section className="section" style={{ paddingTop: "var(--s8)" }}>
         {/* Square, matching the cards on the homepage: the code screenshot is
             ~1:1 and a taller box cropped its line numbers and line ends. */}
-        <div
-          className="media media-center"
+        <ZoomableImage
+          src={service.image.src}
+          alt={service.image.alt}
+          className="media media-center media-edge"
           style={{ aspectRatio: "1 / 1", maxWidth: "480px", marginBottom: "var(--s6)" }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={service.image.src} alt={service.image.alt} />
-        </div>
+        />
 
         <h1 className="display" style={{ marginBottom: "var(--s4)" }}>
           {service.title}

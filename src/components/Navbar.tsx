@@ -41,17 +41,8 @@ export default function Navbar() {
         justifyContent: "space-between",
       }}
     >
-      <a
-        href="/"
-        className="label-ui"
-        style={{
-          fontWeight: 900,
-          letterSpacing: "0.14em",
-          color: "var(--ink)",
-          textDecoration: "none",
-        }}
-      >
-        Capricorn Hub
+      <a href="/" aria-label="Capricorn Hub — home" style={{ display: "block" }}>
+        <span className="navbar-logo" role="img" aria-label="Capricorn Hub" />
       </a>
 
       <div
