@@ -711,9 +711,9 @@ html {
   );
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--ink) 22%, transparent) inset,
-    0 10px 24px -12px color-mix(in srgb, var(--ink) 45%, transparent);
+  /* Inset only. No outer shadow at any state, so nothing is drawn beyond
+     the border line — the lift is carried by transform and the highlight. */
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 22%, transparent) inset;
   cursor: pointer;
   transition:
     transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -721,21 +721,19 @@ html {
     border-color 220ms ease;
 }
 
-/* Hover: lifts off the surface. */
+/* Hover: lifts. The inner highlight strengthens in place of a drop shadow. */
 .btn-glass:hover {
   transform: translateY(-2px) scale(1.03);
   border-color: var(--hairline-strong);
   box-shadow:
-    0 1px 0 color-mix(in srgb, var(--ink) 34%, transparent) inset,
-    0 18px 34px -14px color-mix(in srgb, var(--ink) 55%, transparent);
+    0 1px 0 color-mix(in srgb, var(--ink) 40%, transparent) inset,
+    0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent) inset;
 }
 
-/* Press: pushes in. The drop shadow flips inward and the lift collapses. */
+/* Press: pushes in. The highlight flips to a shadow cast inward. */
 .btn-glass:active {
   transform: translateY(1px) scale(0.98);
-  box-shadow:
-    0 2px 8px color-mix(in srgb, var(--ink) 30%, transparent) inset,
-    0 2px 6px -4px color-mix(in srgb, var(--ink) 40%, transparent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 32%, transparent) inset;
   transition-duration: 90ms;
 }
 

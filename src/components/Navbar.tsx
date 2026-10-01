@@ -15,7 +15,10 @@ import ThemeToggle from "@/components/ThemeToggle";
 const links: MenuLink[] = [
   { href: "/#work", label: "Work" },
   { href: "/#services", label: "Services" },
-  { href: "/store", label: "Store" },
+  // Store commented out. The route is shelved too: src/app/store was renamed
+  // to src/app/_store, which Next treats as a private folder and does not
+  // route, so /store now 404s rather than sitting there unlinked.
+  // { href: "/store", label: "Store" },
 ];
 
 // MOBILE-MENU.md forbids a CTA button inside the menu, so "Start a Project"
@@ -62,7 +65,7 @@ export default function Navbar() {
             {l.label}
           </a>
         ))}
-        <a href="/#contact" className="btn-outline">
+        <a href="/#contact" className="btn-glass">
           Start a Project
         </a>
         <ThemeToggle />
