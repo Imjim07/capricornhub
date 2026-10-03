@@ -970,6 +970,95 @@ html {
   }
 }
 
+/* --- Project brief ------------------------------------------------------
+   Intro left, form right, as in the reference contact page. Fields are
+   hairline underlines (§6) and choices are squares, not pills — §7 rules out
+   rounded corners, so a radio reads as a square here too.
+   ----------------------------------------------------------------------- */
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--s6);
+  align-items: start;
+}
+
+.brief-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s4);
+}
+
+.choice-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 16px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+/* The real control stays in the accessibility tree and keeps keyboard
+   behaviour; it is just not what you see. */
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.choice-box {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--hairline);
+  background-color: transparent;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.choice:hover .choice-box {
+  border-color: var(--hairline-strong);
+}
+
+.choice input:checked + .choice-box {
+  background-color: var(--ink);
+  border-color: var(--ink);
+}
+
+.choice input:focus-visible + .choice-box {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.btn-glass[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .brief-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+  .brief-pair {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-box {
+    transition: none;
+  }
+}
+
 /* --- Social icons — §6 footer: 20px glyphs on the links' baseline ------- */
 
 .social-link {

@@ -65,7 +65,7 @@ export default function Navbar() {
             {l.label}
           </a>
         ))}
-        <a href="/#contact" className="btn-glass">
+        <a href="/start-a-project" className="btn-glass">
           Start a Project
         </a>
         <ThemeToggle />

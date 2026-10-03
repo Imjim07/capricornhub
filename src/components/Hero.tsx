@@ -30,7 +30,7 @@ export default function Hero() {
       </p>
 
       <div style={{ display: "flex", gap: "var(--s4)", alignItems: "center", flexWrap: "wrap" }}>
-        <a href="#contact" className="btn-glass">
+        <a href="/start-a-project" className="btn-glass">
           Start a Project
         </a>
         {/* The secondary action stays a hairline-underlined text link so the
