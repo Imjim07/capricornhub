@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService, tiersFor } from "@/data/items";
+import TierMark from "@/components/TierMark";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -49,7 +50,7 @@ export default async function ServicePage({
           <img src={service.image.src} alt={service.image.alt} />
         </div>
 
-        <h1 className="display" style={{ marginBottom: "var(--s4)" }}>
+        <h1 className="display display-fit" style={{ marginBottom: "var(--s4)" }}>
           {service.title}
         </h1>
 
@@ -58,40 +59,45 @@ export default async function ServicePage({
         </p>
 
         <div className="product-grid">
-          {tiers.map((tier) => (
-            <div key={tier.slug} className="product-card">
-              {/* Weight and position carry the recommendation (DESIGN.md §2). */}
-              <p
-                className="label"
-                style={{
-                  marginBottom: "var(--s2)",
-                  visibility: tier.featured ? "visible" : "hidden",
-                }}
-                aria-hidden={!tier.featured}
-              >
-                Most Popular
-              </p>
+          {tiers.map((tier, i) => (
+            <div key={tier.slug} className="tier-card">
+              <span className="tier-card-mark">
+                <TierMark index={i} />
+              </span>
 
-              <p
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  fontWeight: tier.featured ? 900 : 500,
-                  lineHeight: 1.2,
-                }}
-              >
-                {tier.title}
-              </p>
+              <div className="tier-card-body">
+                {/* Weight and position carry the recommendation (§2), so the
+                    featured tier stays obvious without a third colour. */}
+                <p
+                  className="label"
+                  style={{
+                    fontWeight: 900,
+                    marginBottom: "var(--s2)",
+                    visibility: tier.featured ? "visible" : "hidden",
+                  }}
+                  aria-hidden={!tier.featured}
+                >
+                  Most Popular
+                </p>
 
-              <p style={{ marginTop: "16px", fontSize: "16px", lineHeight: 1.6 }}>
-                {tier.price}
-              </p>
+                <p className="tier-card-value">{tier.price.replace(/^from /, "")}</p>
 
-              <div style={{ marginTop: "var(--s3)" }}>
-                <Link href={"/" + tier.slug} className="btn-glass">
-                  See more
-                </Link>
+                <p
+                  className="label"
+                  style={{
+                    marginTop: "var(--s2)",
+                    fontWeight: tier.featured ? 900 : 500,
+                    opacity: 0.7,
+                  }}
+                >
+                  {tier.title}
+                </p>
+
+                <div style={{ marginTop: "var(--s4)" }}>
+                  <Link href={"/" + tier.slug} className="btn-glass">
+                    See more
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
