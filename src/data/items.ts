@@ -43,15 +43,15 @@ export type DetailItem = {
   price: string;
   /** Engagement terms. Omitted rather than filled with filler. */
   terms?: string;
+  /** One line. The full offering is in `features`. */
   description: string;
+  /** What the package includes. This is the substance of a tier page. */
+  features: string[];
   availability?: string;
   /** Carried by weight and position only — never an accent (DESIGN.md §2). */
   featured?: boolean;
-  /** Service tiers and bespoke work are not quantity items. */
-  quantity: boolean;
   action: { label: string; done: string };
   select?: { label: string; options: SelectOption[] };
-  images: ItemImage[];
 };
 
 export type Service = {
@@ -163,11 +163,16 @@ export const webTiers: DetailItem[] = [
     slug: "starter",
     title: "Starter",
     price: "from NGN 250,000",
-    description:
-      "Up to five pages, custom designed with no templates. Mobile responsive, with a contact form that delivers to email. Basic SEO setup and 30 days of post-launch support.",
-    quantity: false,
+    description: "Small businesses that need a real online presence.",
+    features: [
+      "Up to 5 pages",
+      "Custom design, no templates",
+      "Mobile responsive",
+      "Contact form with email delivery",
+      "Basic SEO setup",
+      "30 days post-launch support",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Starter"),
   },
   {
     kind: "item",
@@ -175,11 +180,17 @@ export const webTiers: DetailItem[] = [
     title: "Studio",
     price: "from NGN 500,000",
     featured: true,
-    description:
-      "Everything in Starter, up to twelve pages. CMS integration for editable content, plus an e-commerce or booking flow. Advanced SEO, performance optimisation, custom animations, and 60 days of post-launch support.",
-    quantity: false,
+    description: "Growing brands that need more than a brochure site.",
+    features: [
+      "Everything in Starter",
+      "Up to 12 pages",
+      "CMS integration for editable content",
+      "E-commerce or booking flow, choose one",
+      "Advanced SEO and performance optimisation",
+      "Custom animations and transitions",
+      "60 days post-launch support",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Studio"),
   },
   {
     kind: "item",
@@ -187,11 +198,16 @@ export const webTiers: DetailItem[] = [
     title: "Scale",
     price: "from NGN 1,000,000",
     terms: "Quoted per engagement above the floor.",
-    description:
-      "Everything in Studio with unlimited pages. Custom backend and API integrations, multi-user dashboards or admin panels, and payment gateway integrations. Priority support for 90 days.",
-    quantity: false,
+    description: "Established businesses that need bespoke systems.",
+    features: [
+      "Everything in Studio",
+      "Unlimited pages",
+      "Custom backend and API integrations",
+      "Multi-user dashboards or admin panels",
+      "Payment gateway integrations",
+      "Priority support for 90 days",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Scale"),
   },
 ];
 
@@ -204,11 +220,14 @@ export const brandingTiers: DetailItem[] = [
     title: "Logo",
     price: "from NGN 60,000",
     terms: "Two revision rounds included.",
-    description:
-      "Two to three initial concepts. One primary logo plus one or two lockup variations. Delivered as PNG, SVG and transparent files.",
-    quantity: false,
+    description: "The entry point.",
+    features: [
+      "2-3 initial concepts",
+      "Primary logo plus 1-2 lockup variations",
+      "PNG, SVG and transparent formats",
+      "2 revision rounds",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Logo"),
   },
   {
     kind: "item",
@@ -217,11 +236,16 @@ export const brandingTiers: DetailItem[] = [
     price: "from NGN 150,000",
     terms: "Two revision rounds included.",
     featured: true,
-    description:
-      "Everything in Logo, plus a full colour palette with hex codes, typography selection and pairing, a logo system with mark and icon, and a concise brand sheet.",
-    quantity: false,
+    description: "Everything a business needs to look consistent everywhere.",
+    features: [
+      "Everything in Logo",
+      "Full colour palette with hex codes",
+      "Typography selection and pairing",
+      "Logo system with mark and icon",
+      "Concise brand sheet",
+      "2 revision rounds",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Brand Identity"),
   },
   {
     kind: "item",
@@ -229,11 +253,15 @@ export const brandingTiers: DetailItem[] = [
     title: "Full Brand System",
     price: "from NGN 300,000",
     terms: "Quoted per engagement above the floor.",
-    description:
-      "Everything in Brand Identity, plus a full brand guidelines document, social media templates, business stationery and launch graphics.",
-    quantity: false,
+    description: "A complete, launch-ready brand.",
+    features: [
+      "Everything in Brand Identity",
+      "Full brand guidelines document",
+      "Social media templates",
+      "Business stationery",
+      "Launch graphics",
+    ],
     action: { label: "Request quote", done: "Quote requested" },
-    images: placeholders("Full Brand System"),
   },
 ];
 
