@@ -524,6 +524,23 @@ html {
   max-width: 420px;
 }
 
+/* The one-third drop exists to avoid top-aligning against an image. A tier
+   page has a list in that column instead, so both start together. */
+.detail-col-top {
+  padding-top: 0;
+}
+
+/* The included list, in the column the image used to occupy. */
+.detail-includes {
+  padding-right: 64px;
+}
+
+@media (max-width: 900px) {
+  .detail-includes {
+    padding: 0 40px var(--s5);
+  }
+}
+
 .thumb-strip {
   display: flex;
   gap: 12px;
