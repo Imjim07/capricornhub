@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService, tiersFor } from "@/data/items";
-import TierMark from "@/components/TierMark";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -61,8 +60,8 @@ export default async function ServicePage({
         <div className="product-grid">
           {tiers.map((tier, i) => (
             <div key={tier.slug} className="tier-card">
-              <span className="tier-card-mark">
-                <TierMark index={i} />
+              <span className="tier-card-id" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
               </span>
 
               <div className="tier-card-body">

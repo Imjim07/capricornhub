@@ -421,11 +421,16 @@ html {
   border-bottom-right-radius: 24px;
 }
 
-/* Mark sits top-right, clear of the notch. */
-.tier-card-mark {
+/* Package ID, top-right and clear of the notch. aria-hidden: it is an
+   ordinal for the eye, and the tier name below already names the card. */
+.tier-card-id {
   align-self: flex-end;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
   color: var(--ink);
-  opacity: 0.9;
+  opacity: 0.22;
 }
 
 /* Everything else sits at the bottom, as in the reference. */
@@ -917,6 +922,34 @@ html {
   .theme-toggle-thumb,
   .theme-toggle-icon {
     transition: none;
+  }
+}
+
+/* --- Contact details: footer on tablet and up, Contact on phones -------
+   Rendered in both places and hidden in one, so exactly one is in the
+   accessibility tree at any width. 767px rather than the usual 768 so iPad
+   portrait, which is exactly 768, counts as tablet and gets the footer.
+   ----------------------------------------------------------------------- */
+
+.footer-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s4);
+  padding-bottom: var(--s5);
+  margin-bottom: var(--s5);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.contact-details-inline {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .footer-details {
+    display: none;
+  }
+  .contact-details-inline {
+    display: flex;
   }
 }
 

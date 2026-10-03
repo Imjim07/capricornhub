@@ -1,18 +1,12 @@
 "use client";
 import { useState } from "react";
-import { SOCIALS } from "@/components/SocialMarks";
+import { CONTACT_DETAILS } from "@/data/entity";
 
 // DESIGN.md §6 — input rows are a label and a bottom hairline. No box, no
 // background, no radius. Focus raises the hairline to full --ink.
 // The form state, handler and Resend submission path are unchanged.
-
-// TODO(capricornhub): replace the placeholders with the real details.
-// Only the email is confirmed (it matches Footer.tsx).
-const DETAILS = [
-  { label: "Mail", value: "studio@capricornhub.com", href: "mailto:studio@capricornhub.com" },
-  { label: "Phone", value: "+234 902 947 8440" },
-  { label: "Studio", value: "Lagos, Nigeria" },
-];
+//
+// The Follow us row has moved out: the socials live in the footer only.
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -109,8 +103,13 @@ async function handleSubmit() {
           )}
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "var(--s5)" }}>
-          {DETAILS.map((d) => (
+        {/* Phones only. On tablet and up these live in the footer instead —
+            see .contact-details-inline in globals.css. */}
+        <div
+          className="contact-details-inline"
+          style={{ flexDirection: "column", gap: "var(--s5)" }}
+        >
+          {CONTACT_DETAILS.map((d) => (
             <div key={d.label} style={{ borderTop: "1px solid var(--hairline)", paddingTop: "var(--s3)" }}>
               <p className="label muted" style={{ marginBottom: "var(--s2)" }}>
                 {d.label}
@@ -126,26 +125,6 @@ async function handleSubmit() {
               </p>
             </div>
           ))}
-
-          <div style={{ borderTop: "1px solid var(--hairline)", paddingTop: "var(--s3)" }}>
-            <p className="label muted" style={{ marginBottom: "var(--s3)" }}>
-              Follow us
-            </p>
-            <div style={{ display: "flex", gap: "var(--s3)" }}>
-              {SOCIALS.map(({ name: social, href, Mark }) => (
-                <a
-                  key={social}
-                  href={href}
-                  aria-label={social}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  <Mark />
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -10,3 +10,11 @@ export const ENTITY = {
   /** How long contact enquiries are kept before deletion. */
   retention: "12 months",
 };
+
+/** Shown in the footer on tablet and up, and in the Contact section on
+    phones. Both read this, so the two can never disagree. */
+export const CONTACT_DETAILS = [
+  { label: "Mail", value: "studio@capricornhub.com", href: "mailto:studio@capricornhub.com" },
+  { label: "Phone", value: "+234 902 947 8440", href: "tel:+2349029478440" },
+  { label: "Studio", value: "Lagos, Nigeria" },
+];
