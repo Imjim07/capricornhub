@@ -20,14 +20,9 @@ export default function Hero() {
           server component — doing it in JS would mean a flash on load and a
           hydration mismatch, since the theme is applied before React runs.
           The hidden one is display:none, so it is out of the a11y tree. */}
-      {/* "We" is common to both headlines, so it sits outside the animation
-          and never moves. Only the second word flips. */}
       <h1 className="display hero-headline" style={{ marginBottom: "var(--s5)" }}>
-        We{" "}
-        <span className="word-flip">
-          <span className="when-dark">build.</span>
-          <span className="when-light">design.</span>
-        </span>
+        <span className="when-dark">We build.</span>
+        <span className="when-light">We design.</span>
       </h1>
 
       <p className="body-copy" style={{ marginBottom: "var(--s3)" }}>
