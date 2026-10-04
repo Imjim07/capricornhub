@@ -81,52 +81,64 @@
    Transitions do not run on first paint, so a load already in cream renders
    "We design." with no animation. The motion only happens on a toggle, which
    is a user action — §1.5. */
-.hero-headline {
-  display: grid;
+/* Only the second word animates. Both candidates share one grid cell, so the
+   cell is as wide as the longer word and "We" never shifts. The outgoing
+   word rotates away from the viewer about its own centre while the incoming
+   one rotates in behind it — a split-flap flip rather than a cross-fade.
+
+   display cannot be transitioned, so visibility carries the accessibility
+   side: delayed out, immediate in, which keeps the hidden word out of the
+   accessibility tree without truncating the flip. */
+.word-flip {
+  display: inline-grid;
+  perspective: 800px;
 }
 
-.hero-headline > span {
+/* The flip runs in two halves rather than cross-fading: the outgoing word
+   rotates away over 240ms, then the incoming one rotates in over the next
+   240ms. Each rule below describes how that span animates INTO the state it
+   declares, which is what lets the leaving half run before the arriving one.
+
+   No opacity fade. backface-visibility plus the rotation does the hiding —
+   edge-on at 90deg a word is invisible on its own, and the foreshortening on
+   the way there is what makes it read as a flip. */
+.word-flip > span {
   grid-area: 1 / 1;
-  transition:
-    opacity 360ms ease,
-    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0s;
+  text-align: left;
+  backface-visibility: hidden;
+  transform-origin: 50% 50%;
 }
 
-/* Default (dark): "We build." showing, "We design." waiting below. */
-.hero-headline .when-dark {
-  opacity: 1;
-  transform: none;
+/* Dark: "build." faces the viewer, "design." waits edge-on. */
+.word-flip .when-dark {
+  transform: rotateX(0deg);
   visibility: visible;
+  /* arriving: waits for the other half to clear */
+  transition: transform 240ms cubic-bezier(0, 0, 0.3, 1) 240ms, visibility 0s;
 }
 
-.hero-headline .when-light {
-  opacity: 0;
-  transform: translateY(0.22em);
+.word-flip .when-light {
+  transform: rotateX(90deg);
   visibility: hidden;
-  transition-delay: 0s, 0s, 360ms;
-  pointer-events: none;
+  /* leaving: goes first, then is taken out of the a11y tree */
+  transition: transform 240ms cubic-bezier(0.42, 0, 1, 1) 0s, visibility 0s 480ms;
 }
 
-/* Light: "We build." lifts away, "We design." arrives. */
-:root[data-theme="light"] .hero-headline .when-dark {
-  opacity: 0;
-  transform: translateY(-0.22em);
+/* Light: the two swap roles. */
+:root[data-theme="light"] .word-flip .when-dark {
+  transform: rotateX(-90deg);
   visibility: hidden;
-  transition-delay: 0s, 0s, 360ms;
-  pointer-events: none;
+  transition: transform 240ms cubic-bezier(0.42, 0, 1, 1) 0s, visibility 0s 480ms;
 }
 
-:root[data-theme="light"] .hero-headline .when-light {
-  opacity: 1;
-  transform: none;
+:root[data-theme="light"] .word-flip .when-light {
+  transform: rotateX(0deg);
   visibility: visible;
-  transition-delay: 0s;
-  pointer-events: auto;
+  transition: transform 240ms cubic-bezier(0, 0, 0.3, 1) 240ms, visibility 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-headline > span {
+  .word-flip > span {
     transition: none;
     transform: none !important;
   }
