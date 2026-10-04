@@ -20,7 +20,7 @@ export default function Hero() {
           server component — doing it in JS would mean a flash on load and a
           hydration mismatch, since the theme is applied before React runs.
           The hidden one is display:none, so it is out of the a11y tree. */}
-      <h1 className="display" style={{ marginBottom: "var(--s5)" }}>
+      <h1 className="display hero-headline" style={{ marginBottom: "var(--s5)" }}>
         <span className="when-dark">We build.</span>
         <span className="when-light">We design.</span>
       </h1>
