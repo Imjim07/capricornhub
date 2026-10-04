@@ -69,6 +69,20 @@
   }
 }
 
+/* Show one or the other depending on the theme. Dark is the default, so
+   .when-light is hidden until [data-theme="light"] is set on <html>. */
+.when-light {
+  display: none;
+}
+
+:root[data-theme="light"] .when-dark {
+  display: none;
+}
+
+:root[data-theme="light"] .when-light {
+  display: inline;
+}
+
 * {
   margin: 0;
   padding: 0;

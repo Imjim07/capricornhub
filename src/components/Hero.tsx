@@ -15,8 +15,14 @@ export default function Hero() {
         paddingTop: "var(--s8)",
       }}
     >
+      {/* The headline follows the theme: "We build." on green, "We design."
+          on cream. Both are in the markup and CSS shows one, so this stays a
+          server component — doing it in JS would mean a flash on load and a
+          hydration mismatch, since the theme is applied before React runs.
+          The hidden one is display:none, so it is out of the a11y tree. */}
       <h1 className="display" style={{ marginBottom: "var(--s5)" }}>
-        We build.
+        <span className="when-dark">We build.</span>
+        <span className="when-light">We design.</span>
       </h1>
 
       <p className="body-copy" style={{ marginBottom: "var(--s3)" }}>
