@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# isolated dist dir for verification builds (see next.config.ts)
+/.next-verify
