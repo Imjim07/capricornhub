@@ -95,7 +95,7 @@ async function handleSubmit() {
               <button
                 type="button"
                 onClick={() => handleSubmit()}
-                className="btn-outline"
+                className="btn-glass"
                 style={{ alignSelf: "flex-start" }}
               >
                 Send Message
