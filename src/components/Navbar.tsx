@@ -21,9 +21,14 @@ const links: MenuLink[] = [
   // { href: "/store", label: "Store" },
 ];
 
-// MOBILE-MENU.md forbids a CTA button inside the menu, so "Start a Project"
-// becomes a plain Contact band. Four bands is the stated maximum.
-const menuLinks: MenuLink[] = [...links, { href: "/#contact", label: "Contact" }];
+// "Start a Project" is its own page now rather than a CTA that scrolls to a
+// form, so it belongs in the menu as an ordinary destination band. That also
+// settles the earlier tension with MOBILE-MENU.md, which forbids a CTA button
+// inside the overlay but not a link. Three bands, under the stated maximum.
+const menuLinks: MenuLink[] = [
+  ...links,
+  { href: "/start-a-project", label: "Start a Project" },
+];
 
 const MENU_ID = "mobile-menu";
 
@@ -65,7 +70,7 @@ export default function Navbar() {
             {l.label}
           </a>
         ))}
-        <a href="/#contact" className="btn-glass">
+        <a href="/start-a-project" className="btn-glass">
           Start a Project
         </a>
         <ThemeToggle />

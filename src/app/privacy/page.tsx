@@ -56,13 +56,13 @@ export default function PrivacyPage() {
         <P>
           The contact form on this site asks for your name, email address and a
           message. We use these only to read and reply to your enquiry. The form
-          is the only place on the site where you type personal information — we
+          is the only place on the site where you type personal information, we
           have no accounts, no logins and no payment processing.
         </P>
 
         <H>Information collected automatically</H>
         <P>
-          We use Google Analytics 4 to understand how the site is used — which
+          We use Google Analytics 4 to understand how the site is used, which
           pages are visited, roughly where visitors come from, what device and
           browser they use, and how they move through the site. Google Analytics
           sets cookies and collects your IP address, which Google processes to
@@ -88,8 +88,8 @@ export default function PrivacyPage() {
         </P>
         <List
           items={[
-            "_ga — distinguishes one visitor from another. Set by Google Analytics. Expires after 2 years.",
-            "_ga_H2NZVVEGJT — keeps session state for our Google Analytics property. Expires after 2 years.",
+            "_ga: distinguishes one visitor from another. Set by Google Analytics. Expires after 2 years.",
+            "_ga_H2NZVVEGJT: keeps session state for our Google Analytics property. Expires after 2 years.",
           ]}
         />
         <P>
@@ -105,8 +105,7 @@ export default function PrivacyPage() {
           ]}
         />
         <P>
-          You can object to processing based on legitimate interests at any time
-          — see Your rights.
+          You can object to processing based on legitimate interests at any time, see Your rights.
         </P>
 
         <H>Who we share it with</H>
@@ -116,10 +115,10 @@ export default function PrivacyPage() {
         </P>
         <List
           items={[
-            "Google (Google Analytics) — site usage measurement, and the analytics cookies above.",
-            "Resend — delivers contact form submissions to our inbox. Receives the name, email and message you submit.",
-            "Cloudinary — hosts images on the site. Receives your IP address when your browser loads an image.",
-            ENTITY.hosting + " — hosts the site and processes standard server request logs.",
+            "Google (Google Analytics): site usage measurement, and the analytics cookies above.",
+            "Resend: delivers contact form submissions to our inbox. Receives the name, email and message you submit.",
+            "Cloudinary: hosts images on the site. Receives your IP address when your browser loads an image.",
+            ENTITY.hosting + " hosts the site and processes standard server request logs.",
           ]}
         />
         <P>
@@ -179,7 +178,7 @@ export default function PrivacyPage() {
           ]}
         />
         <P>
-          None of these will stop you using the site — nothing here depends on
+          None of these will stop you using the site, nothing here depends on
           analytics.
         </P>
 

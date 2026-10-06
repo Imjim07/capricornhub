@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { CONTACT_DETAILS } from "@/data/entity";
+import CtaBlock from "@/components/CtaBlock";
 
 // DESIGN.md §6 — input rows are a label and a bottom hairline. No box, no
 // background, no radius. Focus raises the hairline to full --ink.
@@ -103,8 +104,12 @@ async function handleSubmit() {
           )}
         </div>
 
-        {/* Phones only. On tablet and up these live in the footer instead —
+        {/* The right-hand column: the closing CTA, plus the contact details on
+            phones only — on tablet and up those live in the footer instead,
             see .contact-details-inline in globals.css. */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "var(--s5)" }}>
+        <CtaBlock />
+
         <div
           className="contact-details-inline"
           style={{ flexDirection: "column", gap: "var(--s5)" }}
@@ -125,6 +130,7 @@ async function handleSubmit() {
               </p>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>
