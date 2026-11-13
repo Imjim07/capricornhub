@@ -155,6 +155,49 @@ export const caseStudies: CaseStudyItem[] = [
   },
 ];
 
+// --- Branding work ---------------------------------------------------------
+// Shown in the Branding folder on the homepage Work section. There are no
+// branding case-study pages yet, so each piece links to the service page.
+// TODO(capricornhub): swap in the real branding portfolio.
+
+export type BrandingPiece = {
+  title: string;
+  /** A short second line on the sheet: what was made. */
+  meta: string;
+  image: { src: string; alt: string };
+  href: string;
+};
+
+export const brandingWork: BrandingPiece[] = [
+  {
+    title: "Accent Homes",
+    meta: "Logo",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/b_rgb:00423d,f_auto,q_auto,w_1000/v1783203482/taccent2_cebtvp.png",
+      alt: "The Accent Homes logo",
+    },
+    href: "/services/brand-identity",
+  },
+  {
+    title: "Avalanche Engineering",
+    meta: "Logo",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/b_rgb:00423d,f_auto,q_auto,w_1000/v1790804776/avalanchelogo_uot4ld.png",
+      alt: "The Avalanche Engineering logo",
+    },
+    href: "/services/brand-identity",
+  },
+  {
+    title: "Capricorn Hub",
+    meta: "Merch",
+    image: {
+      src: "https://res.cloudinary.com/df5uashml/image/upload/f_auto,q_auto,w_1000/v1790688611/transparenttotbag_szydya.png",
+      alt: "A cream Capricorn Hub tote bag held up against a deep green background",
+    },
+    href: "/services/brand-identity",
+  },
+];
+
 // --- Web development tiers -------------------------------------------------
 
 export const webTiers: DetailItem[] = [

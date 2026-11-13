@@ -417,6 +417,27 @@ html {
   row-gap: var(--s6);
 }
 
+/* Work — two glass folders (Web Development, Branding). Each cell is
+   measured by WorkFolders and the folder sizes itself to it. */
+.work-folders {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--s5);
+  row-gap: var(--s6);
+}
+
+.work-folder {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .work-folders {
+    grid-template-columns: 1fr;
+  }
+}
+
 .col-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
